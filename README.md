@@ -53,11 +53,6 @@ Una app desarrollada en **SwiftUI** que permite convertir temperaturas entre **C
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/danimelenge/Temperature-converter.git
 
 
 
