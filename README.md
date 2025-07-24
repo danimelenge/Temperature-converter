@@ -53,5 +53,3 @@ Una app desarrollada en **SwiftUI** que permite convertir temperaturas entre **C
 
 ---
 
-
-
