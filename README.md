@@ -27,6 +27,9 @@ Una app desarrollada en **SwiftUI** que permite convertir temperaturas entre **C
 <!-- Video insertado como imagen con link -->
 [![Demo](https://github.com/user-attachments/assets/f655d3ad-0426-41d3-bfc6-42f4fd870006)](https://github.com/danimelenge/Temperature-converter)
 
+<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro - 2025-11-04 at 12 34 29" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
+
+
 > 🎥 *Demo funcional de la app mostrando animaciones y cambios de estado térmico.*
 
 ---
