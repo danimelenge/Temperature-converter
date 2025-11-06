@@ -25,7 +25,8 @@ Una app desarrollada en **SwiftUI** que permite convertir temperaturas entre **C
 ## 📸 Capturas de pantalla
 
 <!-- Video insertado como imagen con link -->
-[![Demo](https://github.com/user-attachments/assets/f655d3ad-0426-41d3-bfc6-42f4fd870006)](https://github.com/danimelenge/Temperature-converter)
+
+![Grabación de pantalla 2025-11-06 a la(s) 5 17 42 p m](https://github.com/user-attachments/assets/de2cc9a0-f451-4c1e-b454-173093d2532c)
 
 <img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro - 2025-11-04 at 12 34 29" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
 
