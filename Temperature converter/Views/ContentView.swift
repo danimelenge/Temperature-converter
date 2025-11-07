@@ -63,12 +63,15 @@ struct ContentView: View {
             .ignoresSafeArea()
             .animation(.easeInOut(duration: 0.5), value: backgroundGradient)
 
+            // Contenido centrado verticalmente
             VStack(spacing: 28) {
+                Spacer() // Centrado vertical superior
+
                 // MARK: - Ícono de estado térmico
                 Image(systemName: iconName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 90, height: 90)
+                    .frame(width: 100, height: 100)
                     .foregroundStyle(iconColor)
                     .shadow(color: iconColor.opacity(0.5), radius: 10)
                     .scaleEffect(iconAnimationScale)
@@ -77,8 +80,9 @@ struct ContentView: View {
 
                 // MARK: - Resultado de conversión
                 Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
-                    .font(.title3)
+                    .font(.title2)
                     .bold()
+                    .multilineTextAlignment(.center)
                     // NOTE: Este texto muestra la conversión dinámica de temperatura
 
                 // MARK: - Descripción del estado térmico
@@ -91,18 +95,19 @@ struct ContentView: View {
                     .shadow(radius: 4)
 
                 // MARK: - Control deslizante
-                VStack {
+                VStack(spacing: 8) {
                     Slider(value: $inputValue, in: -50...50)
                         .tint(iconColor)
                     Text("Ajusta la temperatura")
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 32)
                 // FIXME: Podrías agregar una etiqueta de valor actual sobre el slider
 
-                Spacer(minLength: 40)
+                Spacer() // Centrado vertical inferior
             }
+            .frame(maxWidth: .infinity)
             .padding()
         }
     }
