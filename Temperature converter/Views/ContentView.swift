@@ -10,10 +10,16 @@ import SwiftUI
 
 // MARK: - Vista Principal de la App
 struct ContentView: View {
-    // MARK: - Estados y Configuración
+    // MARK: - Estados y Configuración Existentes
     @State private var selectedTab = 0              // Controla la pestaña seleccionada del TabView
-    @AppStorage("unitSelection") private var unitSelection: Int = 0  // Guarda la unidad seleccionada (C/F) de forma persistente
+    @AppStorage("unitSelection") private var unitSelection: Int = 0  // Guarda la unidad seleccionada (C/F)
     @State private var inputValue: Double = 0       // Valor numérico de entrada para convertir
+
+    // MARK: - Estados para WhatsNew (Onboarding)
+    // Esta variable guarda si el usuario ya vio la pantalla de bienvenida
+    @AppStorage("hasSeenOnboarding") var hasSeenOnboarding: Bool = false
+    // Controla la presentación de la hoja modal
+    @State private var showWhatsNew: Bool = false
 
     // MARK: - Cuerpo de la vista
     var body: some View {
@@ -36,7 +42,7 @@ struct ContentView: View {
                     .tag(0)
 
                 // --- SEGUNDA PESTAÑA: AJUSTES ---
-                SettingsView()
+                SettingsView() // Asegúrate de tener esta vista creada o comentada si aún no existe
                     .tabItem {
                         Label("Ajustes", systemImage: "gearshape")
                     }
@@ -46,8 +52,22 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.3), value: selectedTab)
             .onChange(of: selectedTab) {
                 print("Cambio de tab a \(selectedTab)")
-                // FIXME: Reemplazar print con lógica o analytics si se requiere registro real
             }
+        }
+        // MARK: - Lógica de presentación de WhatsNew
+        .onAppear {
+            // Si NO ha visto el onboarding, activamos la bandera para mostrar la hoja
+            if !hasSeenOnboarding {
+                showWhatsNew = true
+            }
+        }
+        // Presentación tipo "Sheet" (hoja modal) estilo Apple
+        .sheet(isPresented: $showWhatsNew, onDismiss: {
+            // Cuando se cierra la hoja, marcamos como visto para siempre
+            hasSeenOnboarding = true
+        }) {
+            WhatsNewView()
+                .interactiveDismissDisabled() // Obliga a pulsar el botón "Continuar", evita deslizar para cerrar
         }
     }
 
@@ -76,14 +96,12 @@ struct ContentView: View {
                     .shadow(color: iconColor.opacity(0.5), radius: 10)
                     .scaleEffect(iconAnimationScale)
                     .animation(.spring(response: 0.6, dampingFraction: 0.5), value: iconName)
-                    // TODO: Podría agregarse una animación de rotación o pulsación leve para hacerlo más visual
 
                 // MARK: - Resultado de conversión
                 Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
-                    // NOTE: Este texto muestra la conversión dinámica de temperatura
 
                 // MARK: - Descripción del estado térmico
                 Text(temperatureDescription)
@@ -103,7 +121,6 @@ struct ContentView: View {
                         .foregroundColor(.secondary)
                 }
                 .padding(.horizontal, 32)
-                // FIXME: Podrías agregar una etiqueta de valor actual sobre el slider
 
                 Spacer() // Centrado vertical inferior
             }
@@ -131,7 +148,6 @@ struct ContentView: View {
         case 25..<35: return "🔥 Caliente"
         default: return "☀️ Muy caliente"
         }
-        // TODO: Personalizar mensajes según idioma o preferencias del usuario
     }
 
     /// Devuelve un arreglo de colores para el fondo según temperatura
@@ -144,7 +160,6 @@ struct ContentView: View {
         case 25..<35: return [.orange.opacity(0.4), .red.opacity(0.3)]
         default: return [.red.opacity(0.6), .orange.opacity(0.4)]
         }
-        // NOTE: Podría optimizarse usando un gradiente interpolado dinámico en lugar de rangos discretos
     }
 
     /// Devuelve el ícono adecuado según la temperatura
@@ -165,7 +180,6 @@ struct ContentView: View {
         case 0..<25: return .orange
         default: return .red
         }
-        // FIXME: Ajustar colores para modo oscuro/claro si es necesario
     }
 
     /// Ajusta la escala de animación del ícono
@@ -175,11 +189,10 @@ struct ContentView: View {
         case "snowflake": return 0.9
         default: return 1.0
         }
-        // NOTE: El efecto de escala agrega un toque visual según el estado térmico
     }
 }
 
-// MARK: - Vista previa en Canvas (solo desarrollo)
+// MARK: - Vista previa en Canvas
 #Preview {
     ContentView()
 }
