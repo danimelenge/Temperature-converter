@@ -7,18 +7,21 @@
 
 
 import SwiftUI
+import SwiftData
 
 // MARK: - Vista Principal de la App
 struct ContentView: View {
+    // MARK: - SwiftData Propiedades
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \ConversionHistory.timestamp, order: .reverse) var history: [ConversionHistory]
+
     // MARK: - Estados y Configuración Existentes
-    @State private var selectedTab = 0              // Controla la pestaña seleccionada del TabView
-    @AppStorage("unitSelection") private var unitSelection: Int = 0  // Guarda la unidad seleccionada (C/F)
-    @State private var inputValue: Double = 0       // Valor numérico de entrada para convertir
+    @State private var selectedTab = 0
+    @AppStorage("unitSelection") private var unitSelection: Int = 0
+    @State private var inputValue: Double = 0
 
     // MARK: - Estados para WhatsNew (Onboarding)
-    // Esta variable guarda si el usuario ya vio la pantalla de bienvenida
     @AppStorage("hasSeenOnboarding") var hasSeenOnboarding: Bool = false
-    // Controla la presentación de la hoja modal
     @State private var showWhatsNew: Bool = false
 
     // MARK: - Cuerpo de la vista
@@ -34,40 +37,40 @@ struct ContentView: View {
 
             // MARK: - Contenedor principal con pestañas
             TabView(selection: $selectedTab) {
-                // --- PRIMERA PESTAÑA: CONVERSOR ---
+                // --- PESTAÑA 0: CONVERSOR ---
                 conversionView
                     .tabItem {
                         Label("Convertir", systemImage: "thermometer.sun")
                     }
                     .tag(0)
 
-                // --- SEGUNDA PESTAÑA: AJUSTES ---
-                SettingsView() // Asegúrate de tener esta vista creada o comentada si aún no existe
+                // --- PESTAÑA 1: HISTORIAL ---
+                HistoryListView() // Vista que muestra los registros guardados
+                    .tabItem {
+                        Label("Historial", systemImage: "clock.arrow.circlepath")
+                    }
+                    .tag(1)
+
+                // --- PESTAÑA 2: AJUSTES ---
+                SettingsView()
                     .tabItem {
                         Label("Ajustes", systemImage: "gearshape")
                     }
-                    .tag(1)
+                    .tag(2)
             }
             .tint(.orange)
             .animation(.easeInOut(duration: 0.3), value: selectedTab)
-            .onChange(of: selectedTab) {
-                print("Cambio de tab a \(selectedTab)")
-            }
         }
-        // MARK: - Lógica de presentación de WhatsNew
         .onAppear {
-            // Si NO ha visto el onboarding, activamos la bandera para mostrar la hoja
             if !hasSeenOnboarding {
                 showWhatsNew = true
             }
         }
-        // Presentación tipo "Sheet" (hoja modal) estilo Apple
         .sheet(isPresented: $showWhatsNew, onDismiss: {
-            // Cuando se cierra la hoja, marcamos como visto para siempre
             hasSeenOnboarding = true
         }) {
             WhatsNewView()
-                .interactiveDismissDisabled() // Obliga a pulsar el botón "Continuar", evita deslizar para cerrar
+                .interactiveDismissDisabled()
         }
     }
 
@@ -83,9 +86,8 @@ struct ContentView: View {
             .ignoresSafeArea()
             .animation(.easeInOut(duration: 0.5), value: backgroundGradient)
 
-            // Contenido centrado verticalmente
             VStack(spacing: 28) {
-                Spacer() // Centrado vertical superior
+                Spacer()
 
                 // MARK: - Ícono de estado térmico
                 Image(systemName: iconName)
@@ -97,11 +99,40 @@ struct ContentView: View {
                     .scaleEffect(iconAnimationScale)
                     .animation(.spring(response: 0.6, dampingFraction: 0.5), value: iconName)
 
-                // MARK: - Resultado de conversión
-                Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
-                    .font(.title2)
-                    .bold()
-                    .multilineTextAlignment(.center)
+                // MARK: - Resultado y Botón de Guardado
+                VStack(spacing: 15) {
+                    Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
+                        .font(.title2)
+                        .bold()
+                        .multilineTextAlignment(.center)
+
+                    // --- BOTÓN REDISEÑADO ---
+                    Button(action: {
+                        saveConversion(
+                            input: inputValue,
+                            from: unitSelection == 0 ? "C" : "F",
+                            result: convertedValue,
+                            to: unitSelection == 0 ? "F" : "C"
+                        )
+                    }) {
+                        Label("Guardar historial", systemImage: "plus.app.fill")
+                            .font(.system(size: 13, weight: .bold)) // Fuente más pequeña y compacta
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 8)   // Menos altura
+                            .padding(.horizontal, 16) // Menos anchura
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.orange, Color.orange.opacity(0.8), Color.red.opacity(0.5)]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .clipShape(Capsule()) // Forma de píldora moderna
+                            .shadow(color: .orange.opacity(0.4), radius: 6, x: 0, y: 3)
+                    }
+                    .buttonStyle(.plain) // Importante: elimina el efecto gris del botón por defecto
+                    .scaleEffect(1.0) // Efecto visual opcional
+                }
 
                 // MARK: - Descripción del estado térmico
                 Text(temperatureDescription)
@@ -122,23 +153,42 @@ struct ContentView: View {
                 }
                 .padding(.horizontal, 32)
 
-                Spacer() // Centrado vertical inferior
+                Spacer()
             }
             .frame(maxWidth: .infinity)
             .padding()
         }
     }
 
-    // MARK: - Cálculos y propiedades dinámicas
-
-    /// Convierte el valor de entrada según la unidad seleccionada
-    private var convertedValue: Double {
-        unitSelection == 0
-        ? inputValue * 9 / 5 + 32   // Celsius → Fahrenheit
-        : (inputValue - 32) * 5 / 9 // Fahrenheit → Celsius
+    // MARK: - Lógica de SwiftData para Guardar
+    func saveConversion(input: Double, from: String, result: Double, to: String) {
+        let newRecord = ConversionHistory(
+            inputAmount: input,
+            inputUnit: from,
+            resultAmount: result,
+            resultUnit: to
+        )
+        
+        modelContext.insert(newRecord)
+        
+        // Intentar guardar físicamente los datos
+        try? modelContext.save()
+        
+        // Lógica para mantener solo los últimos 10
+        // Como la Query está ordenada por fecha descendente, los más antiguos están al final
+        if history.count > 10 {
+            let excess = history.suffix(from: 10)
+            for record in excess {
+                modelContext.delete(record)
+            }
+        }
     }
 
-    /// Devuelve una descripción textual según el rango de temperatura
+    // MARK: - Cálculos y propiedades dinámicas
+    private var convertedValue: Double {
+        unitSelection == 0 ? inputValue * 9 / 5 + 32 : (inputValue - 32) * 5 / 9
+    }
+
     private var temperatureDescription: String {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
@@ -150,7 +200,6 @@ struct ContentView: View {
         }
     }
 
-    /// Devuelve un arreglo de colores para el fondo según temperatura
     private var backgroundGradient: [Color] {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
@@ -162,7 +211,6 @@ struct ContentView: View {
         }
     }
 
-    /// Devuelve el ícono adecuado según la temperatura
     private var iconName: String {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
@@ -172,7 +220,6 @@ struct ContentView: View {
         }
     }
 
-    /// Devuelve el color del ícono según temperatura
     private var iconColor: Color {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
@@ -182,7 +229,6 @@ struct ContentView: View {
         }
     }
 
-    /// Ajusta la escala de animación del ícono
     private var iconAnimationScale: CGFloat {
         switch iconName {
         case "flame.fill": return 1.1
@@ -194,5 +240,12 @@ struct ContentView: View {
 
 // MARK: - Vista previa en Canvas
 #Preview {
-    ContentView()
+    // 1. Creamos una configuración de memoria (para que no ensucie tu base de datos real)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    
+    // 2. Creamos el contenedor con nuestro modelo
+    let container = try! ModelContainer(for: ConversionHistory.self, configurations: config)
+    
+    return ContentView()
+        .modelContainer(container) // 3. Inyectamos el contenedor al Preview
 }

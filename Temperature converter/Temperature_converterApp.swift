@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
-struct Temperature_converterApp: App {
+struct TemperatureConverterApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-   }
+        // Añadimos el modelo al contenedor
+        .modelContainer(for: ConversionHistory.self)
+    }
 }
     
         
