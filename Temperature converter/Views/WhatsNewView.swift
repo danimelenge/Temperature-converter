@@ -7,19 +7,23 @@
 
 import SwiftUI
 
+// MARK: - Main View
 struct WhatsNewView: View {
     @Environment(\.dismiss) var dismiss
     
-    // Control de animaciones individuales para efecto escalonado
+    // MARK: - Animation States
     @State private var animateTitle = false
     @State private var animateFeatures = false
     @State private var animateButton = false
+    
+    // TODO: Implementar persistencia para que esta vista solo se muestre una vez tras la actualización
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(spacing: 40) {
-                    // 1. Título y Cabecera con Gradiente
+                    
+                    // MARK: 1. Header Section
                     VStack(spacing: 8) {
                         Text("Novedades en")
                             .font(.title2)
@@ -41,7 +45,7 @@ struct WhatsNewView: View {
                     .scaleEffect(animateTitle ? 1 : 0.8)
                     .opacity(animateTitle ? 1 : 0)
                     
-                    // 2. Lista de Características (Features)
+                    // MARK: 2. Features List
                     VStack(alignment: .leading, spacing: 32) {
                         FeatureRow(
                             icon: "thermometer.sun.fill",
@@ -66,6 +70,8 @@ struct WhatsNewView: View {
                             description: "Una interfaz más limpia y moderna que se adapta al modo oscuro automáticamente.",
                             delay: 0.7
                         )
+                        
+                        // FIXME: El espaciado inferior en pantallas pequeñas (iPhone SE) puede cortar el último elemento
                     }
                     .padding(.horizontal, 30)
                 }
@@ -73,8 +79,9 @@ struct WhatsNewView: View {
             
             Spacer()
             
-            // 3. Botón Continuar Estilizado
+            // MARK: 3. Action Footer
             Button(action: {
+                // FIXME: Verificar si el feedback háptico funciona correctamente en modo de bajo consumo
                 let generator = UIImpactFeedbackGenerator(style: .heavy)
                 generator.impactOccurred()
                 dismiss()
@@ -96,19 +103,24 @@ struct WhatsNewView: View {
             .opacity(animateButton ? 1 : 0)
         }
         .onAppear {
-            // Animación de entrada por etapas
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {
-                animateTitle = true
-            }
-            
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.8)) {
-                animateButton = true
-            }
+            startAnimations()
+        }
+    }
+    
+    // MARK: - Helper Methods
+    private func startAnimations() {
+        // TODO: Mover estos valores de duración a una estructura de constantes de UI
+        withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {
+            animateTitle = true
+        }
+        
+        withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.8)) {
+            animateButton = true
         }
     }
 }
 
-// Componente de fila con animación individual interna
+// MARK: - Subviews
 struct FeatureRow: View {
     let icon: String
     let color: Color
@@ -124,7 +136,7 @@ struct FeatureRow: View {
                 .font(.system(size: 32))
                 .foregroundColor(color)
                 .frame(width: 45)
-                // Efecto de símbolo (iOS 17+)
+                // TODO: Agregar una animación alternativa para dispositivos con versiones anteriores a iOS 17
                 .symbolEffect(.bounce, value: isVisible)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -149,6 +161,7 @@ struct FeatureRow: View {
     }
 }
 
+// MARK: - Preview
 #Preview {
     WhatsNewView()
 }
