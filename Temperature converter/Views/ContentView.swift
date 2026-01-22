@@ -23,6 +23,9 @@ struct ContentView: View {
     // MARK: - Estados para WhatsNew (Onboarding)
     @AppStorage("hasSeenOnboarding") var hasSeenOnboarding: Bool = false
     @State private var showWhatsNew: Bool = false
+    
+    // MARK: - Estados para Feedback Sensorial
+    @State private var saveTrigger = false // Dispara vibración al guardar
 
     // MARK: - Cuerpo de la vista
     var body: some View {
@@ -45,7 +48,7 @@ struct ContentView: View {
                     .tag(0)
 
                 // --- PESTAÑA 1: HISTORIAL ---
-                HistoryListView() // Vista que muestra los registros guardados
+                HistoryListView()
                     .tabItem {
                         Label("Historial", systemImage: "clock.arrow.circlepath")
                     }
@@ -61,6 +64,12 @@ struct ContentView: View {
             .tint(.orange)
             .animation(.easeInOut(duration: 0.3), value: selectedTab)
         }
+        // --- FEEDBACK SENSORIAL ---
+        // Vibra cuando guardamos (Impacto medio)
+        .sensoryFeedback(.impact(weight: .medium), trigger: saveTrigger)
+        // Vibra suavemente mientras movemos el slider (Efecto selección)
+        .sensoryFeedback(.selection, trigger: inputValue)
+        
         .onAppear {
             if !hasSeenOnboarding {
                 showWhatsNew = true
@@ -77,7 +86,7 @@ struct ContentView: View {
     // MARK: - SUBVISTA: Conversión de temperatura
     private var conversionView: some View {
         ZStack {
-            // Fondo dinámico que cambia según la temperatura
+            // Fondo dinámico
             LinearGradient(
                 gradient: Gradient(colors: backgroundGradient),
                 startPoint: .topLeading,
@@ -106,7 +115,7 @@ struct ContentView: View {
                         .bold()
                         .multilineTextAlignment(.center)
 
-                    // --- BOTÓN REDISEÑADO ---
+                    // --- BOTÓN REDISEÑADO CON VIBRACIÓN ---
                     Button(action: {
                         saveConversion(
                             input: inputValue,
@@ -114,12 +123,13 @@ struct ContentView: View {
                             result: convertedValue,
                             to: unitSelection == 0 ? "F" : "C"
                         )
+                        saveTrigger.toggle() // Activa la vibración
                     }) {
                         Label("Guardar historial", systemImage: "plus.app.fill")
-                            .font(.system(size: 13, weight: .bold)) // Fuente más pequeña y compacta
+                            .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(.white)
-                            .padding(.vertical, 8)   // Menos altura
-                            .padding(.horizontal, 16) // Menos anchura
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
                             .background(
                                 LinearGradient(
                                     gradient: Gradient(colors: [Color.orange, Color.orange.opacity(0.8), Color.red.opacity(0.5)]),
@@ -127,11 +137,10 @@ struct ContentView: View {
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .clipShape(Capsule()) // Forma de píldora moderna
+                            .clipShape(Capsule())
                             .shadow(color: .orange.opacity(0.4), radius: 6, x: 0, y: 3)
                     }
-                    .buttonStyle(.plain) // Importante: elimina el efecto gris del botón por defecto
-                    .scaleEffect(1.0) // Efecto visual opcional
+                    .buttonStyle(.plain)
                 }
 
                 // MARK: - Descripción del estado térmico
@@ -143,7 +152,7 @@ struct ContentView: View {
                     .cornerRadius(16)
                     .shadow(radius: 4)
 
-                // MARK: - Control deslizante
+                // MARK: - Control deslizante (Con vibración selección activada en el trigger de arriba)
                 VStack(spacing: 8) {
                     Slider(value: $inputValue, in: -50...50)
                         .tint(iconColor)
@@ -170,12 +179,8 @@ struct ContentView: View {
         )
         
         modelContext.insert(newRecord)
-        
-        // Intentar guardar físicamente los datos
         try? modelContext.save()
         
-        // Lógica para mantener solo los últimos 10
-        // Como la Query está ordenada por fecha descendente, los más antiguos están al final
         if history.count > 10 {
             let excess = history.suffix(from: 10)
             for record in excess {
@@ -238,14 +243,9 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Vista previa en Canvas
+// MARK: - Vista previa
 #Preview {
-    // 1. Creamos una configuración de memoria (para que no ensucie tu base de datos real)
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    
-    // 2. Creamos el contenedor con nuestro modelo
     let container = try! ModelContainer(for: ConversionHistory.self, configurations: config)
-    
-    return ContentView()
-        .modelContainer(container) // 3. Inyectamos el contenedor al Preview
+    return ContentView().modelContainer(container)
 }
