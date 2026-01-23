@@ -65,9 +65,7 @@ struct ContentView: View {
             .animation(.easeInOut(duration: 0.3), value: selectedTab)
         }
         // --- FEEDBACK SENSORIAL ---
-        // Vibra cuando guardamos (Impacto medio)
         .sensoryFeedback(.impact(weight: .medium), trigger: saveTrigger)
-        // Vibra suavemente mientras movemos el slider (Efecto selección)
         .sensoryFeedback(.selection, trigger: inputValue)
         
         .onAppear {
@@ -110,10 +108,13 @@ struct ContentView: View {
 
                 // MARK: - Resultado y Botón de Guardado
                 VStack(spacing: 15) {
+                    // --- TEXTO CON ANIMACIÓN NUMÉRICA ---
                     Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
+                        .contentTransition(.numericText()) // Animación de rodillo para números
+                        .animation(.snappy, value: inputValue) // Suaviza la transición del cambio
 
                     // --- BOTÓN REDISEÑADO CON VIBRACIÓN ---
                     Button(action: {
@@ -123,7 +124,7 @@ struct ContentView: View {
                             result: convertedValue,
                             to: unitSelection == 0 ? "F" : "C"
                         )
-                        saveTrigger.toggle() // Activa la vibración
+                        saveTrigger.toggle()
                     }) {
                         Label("Guardar historial", systemImage: "plus.app.fill")
                             .font(.system(size: 13, weight: .bold))
@@ -152,7 +153,7 @@ struct ContentView: View {
                     .cornerRadius(16)
                     .shadow(radius: 4)
 
-                // MARK: - Control deslizante (Con vibración selección activada en el trigger de arriba)
+                // MARK: - Control deslizante
                 VStack(spacing: 8) {
                     Slider(value: $inputValue, in: -50...50)
                         .tint(iconColor)
