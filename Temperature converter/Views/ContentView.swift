@@ -5,7 +5,6 @@
 //  Created by Daniel Melenge Rojas on 21/07/25.
 //
 
-
 import SwiftUI
 import SwiftData
 
@@ -15,28 +14,27 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ConversionHistory.timestamp, order: .reverse) var history: [ConversionHistory]
 
-    // MARK: - Estados y Configuración Existentes
+    // MARK: - Entorno
+    @Environment(\.colorScheme) var colorScheme
+
+    // MARK: - Estados y Configuración
     @State private var selectedTab = 0
     @AppStorage("unitSelection") private var unitSelection: Int = 0
     @State private var inputValue: Double = 0
 
-    // MARK: - Estados para WhatsNew (Onboarding)
+    // MARK: - Estados para Onboarding
     @AppStorage("hasSeenOnboarding") var hasSeenOnboarding: Bool = false
     @State private var showWhatsNew: Bool = false
     
     // MARK: - Estados para Feedback Sensorial
-    @State private var saveTrigger = false // Dispara vibración al guardar
+    @State private var saveTrigger = false
 
     // MARK: - Cuerpo de la vista
     var body: some View {
         ZStack {
-            // Fondo degradado principal
-            LinearGradient(
-                gradient: Gradient(colors: [.blue.opacity(0.2), .orange.opacity(0.2)]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            // Fondo base que respeta el sistema
+            Color(uiColor: .systemBackground)
+                .ignoresSafeArea()
 
             // MARK: - Contenedor principal con pestañas
             TabView(selection: $selectedTab) {
@@ -64,7 +62,6 @@ struct ContentView: View {
             .tint(.orange)
             .animation(.easeInOut(duration: 0.3), value: selectedTab)
         }
-        // --- FEEDBACK SENSORIAL ---
         .sensoryFeedback(.impact(weight: .medium), trigger: saveTrigger)
         .sensoryFeedback(.selection, trigger: inputValue)
         
@@ -84,7 +81,7 @@ struct ContentView: View {
     // MARK: - SUBVISTA: Conversión de temperatura
     private var conversionView: some View {
         ZStack {
-            // Fondo dinámico
+            // MARK: - Propiedades Dinámicas Adaptadas (Fondo)
             LinearGradient(
                 gradient: Gradient(colors: backgroundGradient),
                 startPoint: .topLeading,
@@ -108,15 +105,13 @@ struct ContentView: View {
 
                 // MARK: - Resultado y Botón de Guardado
                 VStack(spacing: 15) {
-                    // --- TEXTO CON ANIMACIÓN NUMÉRICA ---
                     Text("\(inputValue, specifier: "%.1f")° \(unitSelection == 0 ? "C" : "F") = \(convertedValue, specifier: "%.1f")° \(unitSelection == 0 ? "F" : "C")")
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
-                        .contentTransition(.numericText()) // Animación de rodillo para números
-                        .animation(.snappy, value: inputValue) // Suaviza la transición del cambio
+                        .contentTransition(.numericText())
+                        .animation(.snappy, value: inputValue)
 
-                    // --- BOTÓN REDISEÑADO CON VIBRACIÓN ---
                     Button(action: {
                         saveConversion(
                             input: inputValue,
@@ -170,7 +165,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Lógica de SwiftData para Guardar
+    // MARK: - Lógica de SwiftData
     func saveConversion(input: Double, from: String, result: Double, to: String) {
         let newRecord = ConversionHistory(
             inputAmount: input,
@@ -178,7 +173,6 @@ struct ContentView: View {
             resultAmount: result,
             resultUnit: to
         )
-        
         modelContext.insert(newRecord)
         try? modelContext.save()
         
@@ -190,7 +184,27 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Cálculos y propiedades dinámicas
+    // MARK: - Propiedades Dinámicas Adaptadas
+    private var backgroundGradient: [Color] {
+        let celsius = unitSelection == 0 ? inputValue : convertedValue
+        let isDark = colorScheme == .dark
+        let opacity1 = isDark ? 0.4 : 0.6
+        let opacity2 = isDark ? 0.2 : 0.3
+
+        switch celsius {
+        case ..<0:
+            return [.blue.opacity(opacity1), .cyan.opacity(opacity2)]
+        case 0..<10:
+            return [.blue.opacity(opacity1), .teal.opacity(opacity2)]
+        case 10..<25:
+            return [.green.opacity(opacity1), .yellow.opacity(opacity2)]
+        case 25..<35:
+            return [.orange.opacity(opacity1), .red.opacity(opacity2)]
+        default:
+            return [.red.opacity(opacity1), .orange.opacity(opacity2)]
+        }
+    }
+
     private var convertedValue: Double {
         unitSelection == 0 ? inputValue * 9 / 5 + 32 : (inputValue - 32) * 5 / 9
     }
@@ -203,17 +217,6 @@ struct ContentView: View {
         case 10..<25: return "🌤️ Templado"
         case 25..<35: return "🔥 Caliente"
         default: return "☀️ Muy caliente"
-        }
-    }
-
-    private var backgroundGradient: [Color] {
-        let celsius = unitSelection == 0 ? inputValue : convertedValue
-        switch celsius {
-        case ..<0: return [.blue.opacity(0.6), .cyan.opacity(0.3)]
-        case 0..<10: return [.blue.opacity(0.4), .teal.opacity(0.3)]
-        case 10..<25: return [.green.opacity(0.3), .yellow.opacity(0.2)]
-        case 25..<35: return [.orange.opacity(0.4), .red.opacity(0.3)]
-        default: return [.red.opacity(0.6), .orange.opacity(0.4)]
         }
     }
 
@@ -244,9 +247,21 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Vista previa
-#Preview {
+// MARK: - Vistas Previas (Previews)
+#Preview("Light Mode") {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: ConversionHistory.self, configurations: config)
-    return ContentView().modelContainer(container)
+    
+    return ContentView()
+        .preferredColorScheme(.light)
+        .modelContainer(container)
+}
+
+#Preview("Dark Mode") {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: ConversionHistory.self, configurations: config)
+    
+    return ContentView()
+        .preferredColorScheme(.dark)
+        .modelContainer(container)
 }

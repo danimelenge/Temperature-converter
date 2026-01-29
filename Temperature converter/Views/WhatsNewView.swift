@@ -16,100 +16,99 @@ struct WhatsNewView: View {
     @State private var animateFeatures = false
     @State private var animateButton = false
     
-    // TODO: Implementar persistencia para que esta vista solo se muestre una vez tras la actualización
-    
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(spacing: 40) {
-                    
-                    // MARK: 1. Header Section
-                    VStack(spacing: 8) {
-                        Text("Novedades en")
-                            .font(.title2)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
+        ZStack {
+            // Fondo que se adapta automáticamente a Dark Mode
+            Color(uiColor: .systemBackground)
+                .ignoresSafeArea()
+            
+            VStack {
+                ScrollView {
+                    VStack(spacing: 40) {
                         
-                        Text("Temperature Converter")
-                            .font(.system(size: 36, weight: .black, design: .rounded))
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.blue, .purple],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
+                        // MARK: 1. Header Section
+                        VStack(spacing: 8) {
+                            Text("Novedades en")
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                            
+                            Text("Temperature Converter")
+                                .font(.system(size: 36, weight: .black, design: .rounded))
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.blue, .purple],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
                                 )
+                        }
+                        .padding(.top, 60)
+                        .scaleEffect(animateTitle ? 1 : 0.8)
+                        .opacity(animateTitle ? 1 : 0)
+                        
+                        // MARK: 2. Features List
+                        VStack(alignment: .leading, spacing: 32) {
+                            FeatureRow(
+                                icon: "thermometer.sun.fill",
+                                color: .orange,
+                                title: "Nuevas Unidades",
+                                description: "Ahora soportamos Rankine y Réaumur para conversiones más científicas.",
+                                delay: 0.3
                             )
+                            
+                            FeatureRow(
+                                icon: "arrow.triangle.2.circlepath",
+                                color: .blue,
+                                title: "Conversión Instantánea",
+                                description: "Los valores se actualizan en tiempo real mientras escribes, sin demoras.",
+                                delay: 0.5
+                            )
+                            
+                            FeatureRow(
+                                icon: "paintpalette.fill",
+                                color: .purple,
+                                title: "Diseño Renovado",
+                                description: "Una interfaz más limpia y moderna que se adapta al modo oscuro automáticamente.",
+                                delay: 0.7
+                            )
+                        }
+                        .padding(.horizontal, 30)
                     }
-                    .padding(.top, 60)
-                    .scaleEffect(animateTitle ? 1 : 0.8)
-                    .opacity(animateTitle ? 1 : 0)
-                    
-                    // MARK: 2. Features List
-                    VStack(alignment: .leading, spacing: 32) {
-                        FeatureRow(
-                            icon: "thermometer.sun.fill",
-                            color: .orange,
-                            title: "Nuevas Unidades",
-                            description: "Ahora soportamos Rankine y Réaumur para conversiones más científicas.",
-                            delay: 0.3
-                        )
-                        
-                        FeatureRow(
-                            icon: "arrow.triangle.2.circlepath",
-                            color: .blue,
-                            title: "Conversión Instantánea",
-                            description: "Los valores se actualizan en tiempo real mientras escribes, sin demoras.",
-                            delay: 0.5
-                        )
-                        
-                        FeatureRow(
-                            icon: "paintpalette.fill",
-                            color: .purple,
-                            title: "Diseño Renovado",
-                            description: "Una interfaz más limpia y moderna que se adapta al modo oscuro automáticamente.",
-                            delay: 0.7
-                        )
-                        
-                        // FIXME: El espaciado inferior en pantallas pequeñas (iPhone SE) puede cortar el último elemento
-                    }
-                    .padding(.horizontal, 30)
                 }
+                
+                Spacer()
+                
+                // MARK: 3. Action Footer
+                Button(action: {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
+                    dismiss()
+                }) {
+                    Text("Continuar")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 18)
+                        .background(
+                            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                                .fill(LinearGradient(colors: [.blue, .blue.opacity(0.8)], startPoint: .top, endPoint: .bottom))
+                                .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
+                        )
+                }
+                .padding(.horizontal, 30)
+                .padding(.bottom, 40)
+                .scaleEffect(animateButton ? 1 : 0.9)
+                .opacity(animateButton ? 1 : 0)
             }
-            
-            Spacer()
-            
-            // MARK: 3. Action Footer
-            Button(action: {
-                // FIXME: Verificar si el feedback háptico funciona correctamente en modo de bajo consumo
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.impactOccurred()
-                dismiss()
-            }) {
-                Text("Continuar")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
-                    .background(
-                        RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .fill(LinearGradient(colors: [.blue, .blue.opacity(0.8)], startPoint: .top, endPoint: .bottom))
-                            .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
-                    )
-            }
-            .padding(.horizontal, 30)
-            .padding(.bottom, 40)
-            .scaleEffect(animateButton ? 1 : 0.9)
-            .opacity(animateButton ? 1 : 0)
         }
         .onAppear {
             startAnimations()
         }
     }
     
-    // MARK: - Helper Methods
     private func startAnimations() {
-        // TODO: Mover estos valores de duración a una estructura de constantes de UI
         withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {
             animateTitle = true
         }
@@ -136,7 +135,6 @@ struct FeatureRow: View {
                 .font(.system(size: 32))
                 .foregroundColor(color)
                 .frame(width: 45)
-                // TODO: Agregar una animación alternativa para dispositivos con versiones anteriores a iOS 17
                 .symbolEffect(.bounce, value: isVisible)
             
             VStack(alignment: .leading, spacing: 4) {
@@ -161,7 +159,13 @@ struct FeatureRow: View {
     }
 }
 
-// MARK: - Preview
-#Preview {
+// MARK: - Previews (Light & Dark)
+#Preview("Light Mode") {
     WhatsNewView()
+        .preferredColorScheme(.light)
+}
+
+#Preview("Dark Mode") {
+    WhatsNewView()
+        .preferredColorScheme(.dark)
 }
