@@ -9,18 +9,25 @@ import SwiftUI
 import SwiftData
 
 struct HistoryListView: View {
-    // MARK: - SwiftData Query
+    // MARK: - Entorno y Datos
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.colorScheme) var colorScheme // Detecta automáticamente el tema
     @Query(sort: \ConversionHistory.timestamp, order: .reverse) var history: [ConversionHistory]
     
     var body: some View {
         NavigationStack {
             ZStack {
-                // Fondo para mantener la estética de la app
-                Color.orange.opacity(0.05).ignoresSafeArea()
+                // 1. Fondo Adaptativo: Azul marino profundo en Oscuro, Naranja muy suave en Claro
+                Group {
+                    if colorScheme == .dark {
+                        Color(red: 0.02, green: 0.03, blue: 0.08) // Tu azul marino profundo
+                    } else {
+                        Color.orange.opacity(0.05) // Fondo claro con un toque cálido
+                    }
+                }
+                .ignoresSafeArea()
                 
                 if history.isEmpty {
-                    // Estado vacío usando ContentUnavailableView (iOS 17+)
                     ContentUnavailableView(
                         "Sin historial",
                         systemImage: "clock.arrow.circlepath",
@@ -30,46 +37,55 @@ struct HistoryListView: View {
                     List {
                         ForEach(history) { item in
                             historyRow(item)
-                                .listRowBackground(Color.white.opacity(0.5))
+                                // 2. Fondo de Celda Adaptativo:
+                                // Usamos 'primary' con poca opacidad para que sea grisáceo en ambos modos
+                                .listRowBackground(Color.primary.opacity(0.06))
                         }
-                        .onDelete(perform: deleteItems) // Permite deslizar para borrar
+                        .onDelete(perform: deleteItems)
                     }
-                    .scrollContentBackground(.hidden) // Oculta el fondo gris estándar de la List
+                    .scrollContentBackground(.hidden) // Oculta el fondo gris por defecto de la lista
                 }
             }
             .navigationTitle("Historial")
             .toolbar {
                 if !history.isEmpty {
-                    EditButton() // Botón para borrar varios a la vez
+                    EditButton()
+                        .tint(.orange)
                 }
             }
         }
     }
     
-    // MARK: - Subvista para la fila
+    // MARK: - Subvista para la fila (Optimizada para contraste)
     @ViewBuilder
     private func historyRow(_ item: ConversionHistory) -> some View {
         HStack(spacing: 15) {
             VStack(alignment: .leading, spacing: 4) {
+                // Texto principal: .primary cambia automáticamente entre blanco y negro
                 Text("\(item.inputAmount, specifier: "%.1f")°\(item.inputUnit)")
                     .font(.headline)
+                    .foregroundStyle(.primary)
                 
-                Text(item.timestamp, style: .date)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                Text(item.timestamp, style: .time)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
+                // Fecha y hora: .secondary es un gris que se adapta a ambos fondos
+                HStack(spacing: 4) {
+                    Text(item.timestamp, style: .date)
+                    Text("•")
+                    Text(item.timestamp, style: .time)
+                }
+                .font(.caption2)
+                .foregroundStyle(.secondary)
             }
             
             Spacer()
             
+            // Icono de acento (naranja resalta bien en azul oscuro y en fondo claro)
             Image(systemName: "arrow.right.circle.fill")
                 .foregroundStyle(.orange)
                 .font(.title2)
             
             Spacer()
             
+            // Resultado
             Text("\(item.resultAmount, specifier: "%.1f")°\(item.resultUnit)")
                 .font(.title3)
                 .bold()
@@ -78,7 +94,6 @@ struct HistoryListView: View {
         .padding(.vertical, 4)
     }
     
-    // MARK: - Funciones
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
@@ -89,16 +104,21 @@ struct HistoryListView: View {
     }
 }
 
-// MARK: - Preview con SwiftData Mock
-#Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: ConversionHistory.self, configurations: config)
-    
-    // Añadimos datos de ejemplo para ver cómo queda en el Preview
-    let example = ConversionHistory(inputAmount: 25, inputUnit: "C", resultAmount: 77, resultUnit: "F")
-    container.mainContext.insert(example)
+// MARK: - Previews para probar ambos modos
+#Preview("Light Mode") {
+    let container = try! ModelContainer(for: ConversionHistory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    container.mainContext.insert(ConversionHistory(inputAmount: 20, inputUnit: "C", resultAmount: 68, resultUnit: "F"))
     
     return HistoryListView()
         .modelContainer(container)
+        .preferredColorScheme(.light)
 }
 
+#Preview("Dark Mode") {
+    let container = try! ModelContainer(for: ConversionHistory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    container.mainContext.insert(ConversionHistory(inputAmount: -5, inputUnit: "C", resultAmount: 23, resultUnit: "F"))
+    
+    return HistoryListView()
+        .modelContainer(container)
+        .preferredColorScheme(.dark)
+}

@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct SettingsView: View {
+    // MARK: - Entorno para detectar Modo Oscuro
+    @Environment(\.colorScheme) var colorScheme
+    
     // MARK: - Estado persistente de unidad seleccionada
     @AppStorage("unitSelection") private var unitSelection: Int = 0
 
     var body: some View {
         ZStack {
-            // MARK: - Fondo degradado dinámico
+            // MARK: - Fondo degradado dinámico adaptado
+            let isDark = colorScheme == .dark
+            
             LinearGradient(
-                gradient: Gradient(colors: [.blue.opacity(0.3), .orange.opacity(0.3)]),
+                gradient: Gradient(colors: [
+                    .blue.opacity(isDark ? 0.2 : 0.3),
+                    .orange.opacity(isDark ? 0.15 : 0.3)
+                ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -58,9 +66,9 @@ struct SettingsView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 12)
-                .background(.ultraThinMaterial)
+                .background(.ultraThinMaterial) // Se adapta automáticamente a Dark Mode
                 .cornerRadius(16)
-                .shadow(radius: 6)
+                .shadow(color: .black.opacity(isDark ? 0.4 : 0.1), radius: 6)
 
                 Spacer()
             }
@@ -71,7 +79,17 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Vista previa
-#Preview {
-    SettingsView()
+// MARK: - Vistas Previas Dinámicas
+#Preview("Light Mode") {
+    NavigationStack { // Añadido para ver el título correctamente
+        SettingsView()
+            .preferredColorScheme(.light)
+    }
+}
+
+#Preview("Dark Mode") {
+    NavigationStack {
+        SettingsView()
+            .preferredColorScheme(.dark)
+    }
 }
