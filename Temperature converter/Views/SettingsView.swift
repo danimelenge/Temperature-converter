@@ -8,28 +8,22 @@
 import SwiftUI
 
 struct SettingsView: View {
-    // MARK: - Entorno para detectar Modo Oscuro
+    // MARK: - Inyección del ViewModel y Entorno
+    @State private var viewModel = SettingsViewModel()
     @Environment(\.colorScheme) var colorScheme
-    
-    // MARK: - Estado persistente de unidad seleccionada
-    @AppStorage("unitSelection") private var unitSelection: Int = 0
 
     var body: some View {
         ZStack {
-            // MARK: - Fondo degradado dinámico adaptado
+            // Fondo gestionado por el ViewModel
             let isDark = colorScheme == .dark
             
             LinearGradient(
-                gradient: Gradient(colors: [
-                    .blue.opacity(isDark ? 0.2 : 0.3),
-                    .orange.opacity(isDark ? 0.15 : 0.3)
-                ]),
+                gradient: Gradient(colors: viewModel.backgroundGradient(isDark: isDark)),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
 
-            // MARK: - Contenido principal
             VStack(spacing: 40) {
                 Text("Configuración de Unidad")
                     .font(.title2.bold())
@@ -41,7 +35,7 @@ struct SettingsView: View {
                     VStack {
                         Text("°C")
                             .font(.system(size: 72, weight: .bold))
-                            .foregroundColor(unitSelection == 0 ? .orange : .gray.opacity(0.5))
+                            .foregroundColor(viewModel.colorForCelsius())
                         Text("Celsius")
                             .font(.headline)
                             .foregroundColor(.secondary)
@@ -50,25 +44,25 @@ struct SettingsView: View {
                     VStack {
                         Text("°F")
                             .font(.system(size: 72, weight: .bold))
-                            .foregroundColor(unitSelection == 1 ? .orange : .gray.opacity(0.5))
+                            .foregroundColor(viewModel.colorForFahrenheit())
                         Text("Fahrenheit")
                             .font(.headline)
                             .foregroundColor(.secondary)
                     }
                 }
-                .animation(.easeInOut(duration: 0.3), value: unitSelection)
+                .animation(.easeInOut(duration: 0.3), value: viewModel.unitSelection)
 
                 // MARK: - Selector de unidades
-                Picker("Conversión", selection: $unitSelection) {
+                Picker("Conversión", selection: $viewModel.unitSelection) {
                     Text("Celsius → Fahrenheit").tag(0)
                     Text("Fahrenheit → Celsius").tag(1)
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 12)
-                .background(.ultraThinMaterial) // Se adapta automáticamente a Dark Mode
+                .background(.ultraThinMaterial)
                 .cornerRadius(16)
-                .shadow(color: .black.opacity(isDark ? 0.4 : 0.1), radius: 6)
+                .shadow(color: .black.opacity(viewModel.shadowOpacity(isDark: isDark)), radius: 6)
 
                 Spacer()
             }
@@ -79,9 +73,9 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Vistas Previas Dinámicas
+// MARK: - Previews
 #Preview("Light Mode") {
-    NavigationStack { // Añadido para ver el título correctamente
+    NavigationStack {
         SettingsView()
             .preferredColorScheme(.light)
     }
