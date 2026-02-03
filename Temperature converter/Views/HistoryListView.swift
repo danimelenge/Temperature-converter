@@ -11,18 +11,21 @@ import SwiftData
 struct HistoryListView: View {
     // MARK: - Entorno y Datos
     @Environment(\.modelContext) private var modelContext
-    @Environment(\.colorScheme) var colorScheme // Detecta automáticamente el tema
+    @Environment(\.colorScheme) var colorScheme
     @Query(sort: \ConversionHistory.timestamp, order: .reverse) var history: [ConversionHistory]
+    
+    // Estado para controlar la notificación visual
+    @State private var showToast = false
     
     var body: some View {
         NavigationStack {
             ZStack {
-                // 1. Fondo Adaptativo: Azul marino profundo en Oscuro, Naranja muy suave en Claro
+                // 1. Fondo Adaptativo
                 Group {
                     if colorScheme == .dark {
-                        Color(red: 0.02, green: 0.03, blue: 0.08) // Tu azul marino profundo
+                        Color(red: 0.02, green: 0.03, blue: 0.08)
                     } else {
-                        Color.orange.opacity(0.05) // Fondo claro con un toque cálido
+                        Color.orange.opacity(0.05)
                     }
                 }
                 .ignoresSafeArea()
@@ -37,13 +40,38 @@ struct HistoryListView: View {
                     List {
                         ForEach(history) { item in
                             historyRow(item)
-                                // 2. Fondo de Celda Adaptativo:
-                                // Usamos 'primary' con poca opacidad para que sea grisáceo en ambos modos
                                 .listRowBackground(Color.primary.opacity(0.06))
                         }
                         .onDelete(perform: deleteItems)
                     }
-                    .scrollContentBackground(.hidden) // Oculta el fondo gris por defecto de la lista
+                    .scrollContentBackground(.hidden)
+                }
+                
+                // --- NOTIFICACIÓN VISUAL (TOAST) ---
+                if showToast {
+                    VStack {
+                        Spacer()
+                        HStack(spacing: 10) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                            Text("Copiado al portapapeles")
+                                .font(.subheadline)
+                                .bold()
+                                .foregroundStyle(.primary)
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 20)
+                        .background(.ultraThinMaterial) // Efecto cristal adaptativo
+                        .clipShape(Capsule())
+                        .overlay(
+                            Capsule()
+                                .stroke(Color.primary.opacity(0.1), lineWidth: 0.5)
+                        )
+                        .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .padding(.bottom, 40)
+                    }
+                    .zIndex(1) // Asegura que flote sobre la lista
                 }
             }
             .navigationTitle("Historial")
@@ -56,17 +84,17 @@ struct HistoryListView: View {
         }
     }
     
-    // MARK: - Subvista para la fila (Optimizada para contraste)
+    // MARK: - Subvista para la fila
     @ViewBuilder
     private func historyRow(_ item: ConversionHistory) -> some View {
-        HStack(spacing: 15) {
+        let shareText = "\(String(format: "%.1f", item.inputAmount))°\(item.inputUnit) equivalen a \(String(format: "%.1f", item.resultAmount))°\(item.resultUnit)"
+        
+        HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                // Texto principal: .primary cambia automáticamente entre blanco y negro
                 Text("\(item.inputAmount, specifier: "%.1f")°\(item.inputUnit)")
                     .font(.headline)
                     .foregroundStyle(.primary)
                 
-                // Fecha y hora: .secondary es un gris que se adapta a ambos fondos
                 HStack(spacing: 4) {
                     Text(item.timestamp, style: .date)
                     Text("•")
@@ -78,20 +106,55 @@ struct HistoryListView: View {
             
             Spacer()
             
-            // Icono de acento (naranja resalta bien en azul oscuro y en fondo claro)
             Image(systemName: "arrow.right.circle.fill")
                 .foregroundStyle(.orange)
-                .font(.title2)
+                .font(.title3)
             
             Spacer()
             
-            // Resultado
             Text("\(item.resultAmount, specifier: "%.1f")°\(item.resultUnit)")
-                .font(.title3)
+                .font(.body)
                 .bold()
                 .foregroundStyle(.primary)
+            
+            Menu {
+                Button {
+                    UIPasteboard.general.string = shareText
+                    triggerToast() // Activa el mensaje visual
+                } label: {
+                    Label("Copiar resultado", systemImage: "doc.on.doc")
+                }
+                
+                ShareLink(item: shareText, subject: Text("Conversión de Temperatura")) {
+                    Label("Compartir", systemImage: "square.and.arrow.up")
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.title3)
+                    .foregroundStyle(.orange)
+                    .padding(.leading, 8)
+            }
+            .buttonStyle(.borderless)
         }
         .padding(.vertical, 4)
+    }
+    
+    // MARK: - Lógica de Notificación
+    private func triggerToast() {
+        // Feedback físico (Vibración)
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+            showToast = true
+        }
+        
+        // Desaparece automáticamente tras 2 segundos
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            withAnimation(.easeInOut) {
+                showToast = false
+            }
+        }
     }
     
     private func deleteItems(offsets: IndexSet) {
@@ -104,7 +167,7 @@ struct HistoryListView: View {
     }
 }
 
-// MARK: - Previews para probar ambos modos
+// MARK: - Previews
 #Preview("Light Mode") {
     let container = try! ModelContainer(for: ConversionHistory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
     container.mainContext.insert(ConversionHistory(inputAmount: 20, inputUnit: "C", resultAmount: 68, resultUnit: "F"))
