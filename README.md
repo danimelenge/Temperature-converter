@@ -1,65 +1,100 @@
-# 🌡️ Temperature Converter  
+# 🌡️ Temperature Converter
 
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange?logo=swift&logoColor=white)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-Framework-blue?logo=swift&logoColor=white)
+![SwiftData](https://img.shields.io/badge/SwiftData-Persistence-0A84FF?logo=apple&logoColor=white)
+![MVVM](https://img.shields.io/badge/Architecture-MVVM-6f42c1)
+![Siri](https://img.shields.io/badge/Siri-Integration-black?logo=apple&logoColor=white)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Supported-1c1c1e?logo=apple&logoColor=white)
 ![Xcode](https://img.shields.io/badge/Xcode-15.2-blue?logo=xcode&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS-17%2B-lightgrey?logo=apple&logoColor=black)
 ![Platform](https://img.shields.io/badge/Platform-iPhone%20%7C%20iPad-black?logo=apple)
-![Adobe](https://img.shields.io/badge/Design-Adobe%20XD%20%7C%20Figma-ff61f6?logo=adobe&logoColor=white)
-
-Una app en **SwiftUI** para convertir temperaturas entre **Celsius ↔ Fahrenheit**, con interfaz moderna, fondo degradado, animaciones suaves, y navegación por pestañas.
-
-![Demo de la app](./path-to-your-gif.gif)  
-> 🆕 GIF de demostración de la nueva actualización — agrégalo en la carpeta del proyecto y actualiza la ruta.
->
-> ![Grabación de pantalla 2025-11-07 a la(s) 3 14 05 p m](https://github.com/user-attachments/assets/f2e8e13b-4a60-417a-b73f-1178486c006c)
-
-
-> <img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro - 2025-11-04 at 12 34 29" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
+![Design](https://img.shields.io/badge/Design-Figma%20%7C%20Adobe%20XD-ff61f6?logo=figma&logoColor=white)
 
 ---
 
-## ✨ Novedades de la versión  
-- Se integra un **TabView** con dos pestañas: “Convertir” y “Ajustes”.  
-- En la pestaña Ajustes: botón **“Volver al conversor”** para cambiar automáticamente a la pestaña principal.  
-- Fondo degradado azul-naranja coherente entre vistas.  
-- Visualización grande de “°C” y “°F” en Ajustes para mayor claridad al elegir la unidad.  
-- Persistencia de la unidad seleccionada con `@AppStorage`.  
-- Animaciones suaves (`.easeInOut`, `.spring()`) para una experiencia fluida.  
-- Estructura modular lista para escalar el proyecto.  
+## 📱 Descripción
+
+**Temperature Converter** es una aplicación desarrollada en **SwiftUI** que permite convertir temperaturas entre **Celsius ↔ Fahrenheit** en tiempo real, ofreciendo una experiencia moderna, fluida y alineada con las **Human Interface Guidelines de Apple**.
+
+La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, soporte para **modo claro y oscuro**, animaciones suaves y una estructura modular ideal para crecimiento futuro.
 
 ---
 
-## 🔧 Características  
-- Conversión en tiempo real entre Celsius ↔ Fahrenheit.  
-- Modo claro/oscuro automático.  
-- Fondo dinámico según temperatura.  
-- Ícono reactivo (❄️ / 🌤️ / 🔥).  
-- Selector de unidad con estilo segmentado.  
-- Persistencia de datos en ajustes.  
-- Uso de `// MARK:`, `// FIXME:` y `// TODO:` en el código para mantenerlo ordenado.
+## 🎥 Demo
+
+![Demo de la app](./path-to-your-gif.gif)
+
+> 🆕 Grabación de la versión más reciente  
+> ![Grabación de pantalla](https://github.com/user-attachments/assets/03e640e5-c7f5-4843-82ce-0f3415448dc6)
+
+> <img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
 
 ---
 
-## 📚 Recursos y documentación
+## ✨ Funcionalidades destacadas
 
-- 🧑‍💻 [Documentación oficial de SwiftUI](https://developer.apple.com/documentation/swiftui)
-- 🎨 [Guía de SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols)
-- 📱 [Guía de diseño iOS (HIG)](https://developer.apple.com/design/human-interface-guidelines)
-- 🚀 [SwiftUI Animations Guide](https://swiftwithmajid.com/tag/animations/)
-- 📂 [Organización modular de proyectos Swift](https://github.com/JohnSundell/SwiftTips)
+- Conversión instantánea entre **Celsius ↔ Fahrenheit**
+- Interfaz adaptativa con **Dark Mode / Light Mode**
+- Fondo dinámico que cambia según la temperatura
+- Iconografía reactiva (❄️ / 🌤️ / 🔥)
+- Selector de unidades con estilo segmentado
+- Navegación por pestañas con `TabView`
+- Animaciones suaves y naturales (`.easeInOut`, `.spring()`)
+- Persistencia de preferencias del usuario
+
+---
+
+## ⚙️ Arquitectura y enfoque técnico
+
+- Arquitectura **MVVM**
+- Separación clara de responsabilidades:
+  - `Views`
+  - `ViewModels`
+  - `Models`
+  - `Services`
+- Uso de `@AppStorage` para persistencia ligera
+- Preparada para integración con **SwiftData**
+- Código organizado usando:
+  - `// MARK:`
+  - `// TODO:`
+  - `// FIXME:`
 
 ---
 
 ## 🛠️ Tecnologías utilizadas
 
-- Swift 5.9
-- SwiftUI
-- Xcode 15.2
-- `@AppStorage` para persistencia
-- `NavigationStack`
-- `SF Symbols`
-- Animaciones suaves (`.easeInOut`, `.spring()`)
+- **Swift 5.9**
+- **SwiftUI**
+- **SwiftData** (roadmap / persistencia)
+- **Xcode 15.2**
+- **NavigationStack**
+- **SF Symbols**
+- **iOS 17+**
+- Animaciones declarativas
 
 ---
+
+## 🔮 Roadmap
+
+- [ ] Persistencia avanzada con **SwiftData**
+- [ ] Historial de conversiones
+- [ ] Integración con **Siri Shortcuts**
+
+---
+
+## 📚 Recursos
+
+- 🧑‍💻 [SwiftUI Documentation](https://developer.apple.com/documentation/swiftui)
+- 🎨 [SF Symbols](https://developer.apple.com/sf-symbols/)
+- 📱 [Apple HIG](https://developer.apple.com/design/human-interface-guidelines)
+- 🚀 [SwiftUI Animations](https://swiftwithmajid.com/tag/animations/)
+
+---
+
+## 👨‍💻 Autor
+
+Desarrollado por **Daniel**  
+SwiftUI Developer • iOS • Arquitectura limpia
 
  
