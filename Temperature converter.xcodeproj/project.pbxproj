@@ -11,6 +11,7 @@
 		110323AC2F201EB1004CC247 /* HistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110323AB2F201EB1004CC247 /* HistoryListView.swift */; };
 		1114C5132F1AD85300AAA9EE /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114C5122F1AD85300AAA9EE /* WhatsNewView.swift */; };
 		1128ACDF2F3112D1009A57FC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1128ACDE2F3112D1009A57FC /* SettingsViewModel.swift */; };
+		11314AEE2FB3ABCC00F44D85 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 11314AED2FB3ABCB00F44D85 /* Localizable.xcstrings */; };
 		1142B4562F2D52A0002ADD96 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1142B4552F2D52A0002ADD96 /* ContentViewModel.swift */; };
 		116796D12EBD519200784023 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116796D02EBD519200784023 /* MainTabView.swift */; };
 		1184898B2E2ED96B00851CC9 /* Temperature_converterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1184898A2E2ED96B00851CC9 /* Temperature_converterApp.swift */; };
@@ -27,6 +28,7 @@
 		110323AB2F201EB1004CC247 /* HistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListView.swift; sourceTree = "<group>"; };
 		1114C5122F1AD85300AAA9EE /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		1128ACDE2F3112D1009A57FC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		11314AED2FB3ABCB00F44D85 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1142B4552F2D52A0002ADD96 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		116796D02EBD519200784023 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		118489872E2ED96B00851CC9 /* Temperature converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Temperature converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +65,7 @@
 		1184897E2E2ED96B00851CC9 = {
 			isa = PBXGroup;
 			children = (
+				11314AED2FB3ABCB00F44D85 /* Localizable.xcstrings */,
 				118489892E2ED96B00851CC9 /* Temperature converter */,
 				118489882E2ED96B00851CC9 /* Products */,
 			);
@@ -155,11 +158,12 @@
 			};
 			buildConfigurationList = 118489822E2ED96B00851CC9 /* Build configuration list for PBXProject "Temperature converter" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "es-419";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = 1184897E2E2ED96B00851CC9;
 			productRefGroup = 118489882E2ED96B00851CC9 /* Products */;
@@ -178,6 +182,7 @@
 			files = (
 				118489922E2ED96D00851CC9 /* Preview Assets.xcassets in Resources */,
 				1184898F2E2ED96D00851CC9 /* Assets.xcassets in Resources */,
+				11314AEE2FB3ABCC00F44D85 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +342,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Temperature-converter-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Convertidor;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -349,6 +354,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Melenge.Temperature-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -370,7 +376,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Temperature-converter-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Convertidor;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -382,6 +388,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Melenge.Temperature-converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
