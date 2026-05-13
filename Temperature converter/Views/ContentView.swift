@@ -53,7 +53,7 @@ struct ContentView: View {
             .tint(.orange)
             .animation(.easeInOut(duration: 0.3), value: viewModel.selectedTab)
         }
-        // --- FEEDBACK SENSORIAL (Consumiendo del ViewModel) ---
+        // --- FEEDBACK SENSORIAL ---
         .sensoryFeedback(.impact(weight: .medium), trigger: viewModel.saveTrigger)
         .sensoryFeedback(.selection, trigger: viewModel.inputValue)
         
@@ -73,7 +73,7 @@ struct ContentView: View {
     // MARK: - SUBVISTA: Conversión de temperatura
     private var conversionView: some View {
         ZStack {
-            // Fondo dinámico gestionado por el ViewModel
+            // Fondo dinámico
             LinearGradient(
                 gradient: Gradient(colors: viewModel.backgroundGradient(isDark: colorScheme == .dark)),
                 startPoint: .topLeading,
@@ -85,7 +85,7 @@ struct ContentView: View {
             VStack(spacing: 28) {
                 Spacer()
 
-                // MARK: - Ícono de estado térmico
+                // MARK: - Ícono de estado térmico (Accesibilidad añadida)
                 Image(systemName: viewModel.iconName)
                     .resizable()
                     .scaledToFit()
@@ -94,8 +94,9 @@ struct ContentView: View {
                     .shadow(color: viewModel.iconColor.opacity(0.5), radius: 10)
                     .scaleEffect(viewModel.iconAnimationScale)
                     .animation(.spring(response: 0.6, dampingFraction: 0.5), value: viewModel.iconName)
+                    .accessibilityLabel("Indicador visual de clima") //
 
-                // MARK: - Resultado y Botón de Guardado
+                // MARK: - Resultado y Botón (Accesibilidad añadida)
                 VStack(spacing: 15) {
                     Text("\(viewModel.inputValue, specifier: "%.1f")° \(viewModel.unitSelection == 0 ? "C" : "F") = \(viewModel.convertedValue, specifier: "%.1f")° \(viewModel.unitSelection == 0 ? "F" : "C")")
                         .font(.title2)
@@ -103,9 +104,10 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .contentTransition(.numericText())
                         .animation(.snappy, value: viewModel.inputValue)
+                        .accessibilityElement(children: .ignore) //
+                        .accessibilityLabel("La temperatura es de \(viewModel.inputValue, specifier: "%.1f") grados, que equivalen a \(viewModel.convertedValue, specifier: "%.1f") grados") //
 
                     Button(action: {
-                        // Delegamos la lógica de guardado al ViewModel
                         viewModel.saveConversion(modelContext: modelContext, history: history)
                     }) {
                         Label("Guardar historial", systemImage: "plus.app.fill")
@@ -124,9 +126,11 @@ struct ContentView: View {
                             .shadow(color: .orange.opacity(0.4), radius: 6, x: 0, y: 3)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Guardar en el historial") //
+                    .accessibilityHint("Guarda esta conversión actual en tu lista de registros.") //
                 }
 
-                // MARK: - Descripción del estado térmico
+                // MARK: - Descripción del estado térmico (Accesibilidad añadida)
                 Text(viewModel.temperatureDescription)
                     .font(.headline)
                     .padding(.horizontal, 16)
@@ -134,11 +138,16 @@ struct ContentView: View {
                     .background(.ultraThinMaterial)
                     .cornerRadius(16)
                     .shadow(radius: 4)
+                    .accessibilityLabel("Estado actual: \(viewModel.temperatureDescription)") //
 
-                // MARK: - Control deslizante
+                // MARK: - Control deslizante (Accesibilidad añadida)
                 VStack(spacing: 8) {
                     Slider(value: $viewModel.inputValue, in: -50...50)
                         .tint(viewModel.iconColor)
+                        .accessibilityLabel("Ajuste de temperatura") //
+                        .accessibilityValue("\(Int(viewModel.inputValue)) grados") //
+                        .accessibilityHint("Desliza hacia arriba o hacia abajo para cambiar el valor.") //
+                    
                     Text("Ajusta la temperatura")
                         .font(.footnote)
                         .foregroundColor(.secondary)
