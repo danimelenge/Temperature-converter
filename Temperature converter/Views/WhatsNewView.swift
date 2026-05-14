@@ -18,7 +18,6 @@ struct WhatsNewView: View {
     
     var body: some View {
         ZStack {
-            // Fondo que se adapta automáticamente a Dark Mode
             Color(uiColor: .systemBackground)
                 .ignoresSafeArea()
             
@@ -47,6 +46,10 @@ struct WhatsNewView: View {
                         .padding(.top, 60)
                         .scaleEffect(animateTitle ? 1 : 0.8)
                         .opacity(animateTitle ? 1 : 0)
+                        // ACCESIBILIDAD: Combinamos ambos textos en un solo encabezado
+                        .accessibilityElement(children: .combine)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityLabel("Novedades en Temperature Converter")
                         
                         // MARK: 2. Features List
                         VStack(alignment: .leading, spacing: 32) {
@@ -101,6 +104,9 @@ struct WhatsNewView: View {
                 .padding(.bottom, 40)
                 .scaleEffect(animateButton ? 1 : 0.9)
                 .opacity(animateButton ? 1 : 0)
+                // ACCESIBILIDAD: Etiqueta clara y una pista de qué hace el botón
+                .accessibilityLabel("Continuar a la aplicación")
+                .accessibilityHint("Cierra esta pantalla y abre el conversor principal.")
             }
         }
         .onAppear {
@@ -136,6 +142,8 @@ struct FeatureRow: View {
                 .foregroundColor(color)
                 .frame(width: 45)
                 .symbolEffect(.bounce, value: isVisible)
+                // Ocultamos el icono para VoiceOver porque el título ya explica la función
+                .accessibilityHidden(true)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
@@ -156,6 +164,9 @@ struct FeatureRow: View {
                 isVisible = true
             }
         }
+        // ACCESIBILIDAD: Combinamos el título y descripción en un solo elemento de lectura
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(title): \(description)")
     }
 }
 
