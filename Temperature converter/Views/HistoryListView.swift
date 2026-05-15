@@ -36,6 +36,7 @@ struct HistoryListView: View {
                         systemImage: "clock.arrow.circlepath",
                         description: Text("Las conversiones que guardes aparecerán aquí.")
                     )
+                    // ACCESIBILIDAD: Ya viene optimizado por Apple, pero nos aseguramos de que sea el foco principal.
                 } else {
                     List {
                         ForEach(history) { item in
@@ -61,7 +62,7 @@ struct HistoryListView: View {
                         }
                         .padding(.vertical, 12)
                         .padding(.horizontal, 20)
-                        .background(.ultraThinMaterial) // Efecto cristal adaptativo
+                        .background(.ultraThinMaterial)
                         .clipShape(Capsule())
                         .overlay(
                             Capsule()
@@ -71,7 +72,10 @@ struct HistoryListView: View {
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .padding(.bottom, 40)
                     }
-                    .zIndex(1) // Asegura que flote sobre la lista
+                    .zIndex(1)
+                    // ACCESIBILIDAD: Añadimos un área de anuncio para que VoiceOver lo lea al aparecer
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("Notificación: Copiado al portapapeles")
                 }
             }
             .navigationTitle("Historial")
@@ -79,6 +83,7 @@ struct HistoryListView: View {
                 if !history.isEmpty {
                     EditButton()
                         .tint(.orange)
+                        .accessibilityLabel("Editar lista de historial")
                 }
             }
         }
@@ -89,38 +94,43 @@ struct HistoryListView: View {
     private func historyRow(_ item: ConversionHistory) -> some View {
         let shareText = "\(String(format: "%.1f", item.inputAmount))°\(item.inputUnit) equivalen a \(String(format: "%.1f", item.resultAmount))°\(item.resultUnit)"
         
+        // ACCESIBILIDAD: Convertimos la fila en un solo elemento para evitar navegación fragmentada
         HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("\(item.inputAmount, specifier: "%.1f")°\(item.inputUnit)")
-                    .font(.headline)
-                    .foregroundStyle(.primary)
-                
-                HStack(spacing: 4) {
-                    Text(item.timestamp, style: .date)
-                    Text("•")
-                    Text(item.timestamp, style: .time)
+            HStack { // Contenedor de la información de conversión
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(item.inputAmount, specifier: "%.1f")°\(item.inputUnit)")
+                        .font(.headline)
+                    
+                    HStack(spacing: 4) {
+                        Text(item.timestamp, style: .date)
+                        Text("•")
+                        Text(item.timestamp, style: .time)
+                    }
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
                 }
-                .font(.caption2)
-                .foregroundStyle(.secondary)
+                
+                Spacer()
+                
+                Image(systemName: "arrow.right.circle.fill")
+                    .foregroundStyle(.orange)
+                    .font(.title3)
+                    .accessibilityHidden(true) // Ocultamos el icono decorativo
+                
+                Spacer()
+                
+                Text("\(item.resultAmount, specifier: "%.1f")°\(item.resultUnit)")
+                    .font(.body)
+                    .bold()
             }
+            .accessibilityElement(children: .combine) // Agrupa textos e ignorar el icono
+            .accessibilityLabel("\(item.inputAmount, specifier: "%.1f") grados \(item.inputUnit) equivalen a \(item.resultAmount, specifier: "%.1f") grados \(item.resultUnit). Guardado el \(item.timestamp.formatted(date: .long, time: .shortened))")
             
-            Spacer()
-            
-            Image(systemName: "arrow.right.circle.fill")
-                .foregroundStyle(.orange)
-                .font(.title3)
-            
-            Spacer()
-            
-            Text("\(item.resultAmount, specifier: "%.1f")°\(item.resultUnit)")
-                .font(.body)
-                .bold()
-                .foregroundStyle(.primary)
-            
+            // El menú se mantiene como elemento separado para poder interactuar
             Menu {
                 Button {
                     UIPasteboard.general.string = shareText
-                    triggerToast() // Activa el mensaje visual
+                    triggerToast()
                 } label: {
                     Label("Copiar resultado", systemImage: "doc.on.doc")
                 }
@@ -133,7 +143,10 @@ struct HistoryListView: View {
                     .font(.title3)
                     .foregroundStyle(.orange)
                     .padding(.leading, 8)
+                    .contentShape(Rectangle()) // Aumenta el área de toque
             }
+            .accessibilityLabel("Opciones de registro")
+            .accessibilityHint("Permite copiar o compartir esta conversión.")
             .buttonStyle(.borderless)
         }
         .padding(.vertical, 4)
@@ -141,15 +154,16 @@ struct HistoryListView: View {
     
     // MARK: - Lógica de Notificación
     private func triggerToast() {
-        // Feedback físico (Vibración)
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+        
+        // ACCESIBILIDAD: Notificamos a VoiceOver explícitamente que algo ocurrió
+        UIAccessibility.post(notification: .announcement, argument: "Copiado al portapapeles")
         
         withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
             showToast = true
         }
         
-        // Desaparece automáticamente tras 2 segundos
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             withAnimation(.easeInOut) {
                 showToast = false
