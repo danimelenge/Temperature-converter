@@ -19,9 +19,40 @@
 		1184898F2E2ED96D00851CC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1184898E2E2ED96D00851CC9 /* Assets.xcassets */; };
 		118489922E2ED96D00851CC9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 118489912E2ED96D00851CC9 /* Preview Assets.xcassets */; };
 		1184899A2E2EDAAA00851CC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118489992E2EDAAA00851CC9 /* SettingsView.swift */; };
+		11B46C392FBF72A000E1AFE4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B46C382FBF729E00E1AFE4 /* WidgetKit.framework */; };
+		11B46C3B2FBF72A000E1AFE4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B46C3A2FBF72A000E1AFE4 /* SwiftUI.framework */; };
+		11B46C3E2FBF72A000E1AFE4 /* TemperatureWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B46C3D2FBF72A000E1AFE4 /* TemperatureWidgetBundle.swift */; };
+		11B46C402FBF72A000E1AFE4 /* TemperatureWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B46C3F2FBF72A000E1AFE4 /* TemperatureWidget.swift */; };
+		11B46C422FBF72A000E1AFE4 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B46C412FBF72A000E1AFE4 /* AppIntent.swift */; };
+		11B46C442FBF72E000E1AFE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B46C432FBF72E000E1AFE4 /* Assets.xcassets */; };
+		11B46C482FBF72E000E1AFE4 /* TemperatureWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 11B46C362FBF729E00E1AFE4 /* TemperatureWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		11DE87B32F33CA9F00B4894A /* ConvertTemperatureIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE87B22F33CA9F00B4894A /* ConvertTemperatureIntent.swift */; };
 		11DE87B52F33CB9600B4894A /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE87B42F33CB9600B4894A /* AppShortcutsProvider.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11B46C462FBF72E000E1AFE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1184897F2E2ED96B00851CC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11B46C352FBF729D00E1AFE4;
+			remoteInfo = TemperatureWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		11B46C492FBF72E100E1AFE4 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				11B46C482FBF72E000E1AFE4 /* TemperatureWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		110323A92F201B43004CC247 /* ConversionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHistory.swift; sourceTree = "<group>"; };
@@ -37,6 +68,14 @@
 		1184898E2E2ED96D00851CC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		118489912E2ED96D00851CC9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		118489992E2EDAAA00851CC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		11B46C362FBF729E00E1AFE4 /* TemperatureWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TemperatureWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B46C382FBF729E00E1AFE4 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		11B46C3A2FBF72A000E1AFE4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		11B46C3D2FBF72A000E1AFE4 /* TemperatureWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureWidgetBundle.swift; sourceTree = "<group>"; };
+		11B46C3F2FBF72A000E1AFE4 /* TemperatureWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureWidget.swift; sourceTree = "<group>"; };
+		11B46C412FBF72A000E1AFE4 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		11B46C432FBF72E000E1AFE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11B46C452FBF72E000E1AFE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11DE87B22F33CA9F00B4894A /* ConvertTemperatureIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertTemperatureIntent.swift; sourceTree = "<group>"; };
 		11DE87B42F33CB9600B4894A /* AppShortcutsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcutsProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +85,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11B46C332FBF729D00E1AFE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B46C3B2FBF72A000E1AFE4 /* SwiftUI.framework in Frameworks */,
+				11B46C392FBF72A000E1AFE4 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +115,8 @@
 			children = (
 				11314AED2FB3ABCB00F44D85 /* Localizable.xcstrings */,
 				118489892E2ED96B00851CC9 /* Temperature converter */,
+				11B46C3C2FBF72A000E1AFE4 /* TemperatureWidget */,
+				11B46C372FBF729E00E1AFE4 /* Frameworks */,
 				118489882E2ED96B00851CC9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				118489872E2ED96B00851CC9 /* Temperature converter.app */,
+				11B46C362FBF729E00E1AFE4 /* TemperatureWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +163,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		11B46C372FBF729E00E1AFE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11B46C382FBF729E00E1AFE4 /* WidgetKit.framework */,
+				11B46C3A2FBF72A000E1AFE4 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		11B46C3C2FBF72A000E1AFE4 /* TemperatureWidget */ = {
+			isa = PBXGroup;
+			children = (
+				11B46C3D2FBF72A000E1AFE4 /* TemperatureWidgetBundle.swift */,
+				11B46C3F2FBF72A000E1AFE4 /* TemperatureWidget.swift */,
+				11B46C412FBF72A000E1AFE4 /* AppIntent.swift */,
+				11B46C432FBF72E000E1AFE4 /* Assets.xcassets */,
+				11B46C452FBF72E000E1AFE4 /* Info.plist */,
+			);
+			path = TemperatureWidget;
+			sourceTree = "<group>";
+		};
 		11DE87B12F33C9DE00B4894A /* Intents */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,15 +203,34 @@
 				118489832E2ED96B00851CC9 /* Sources */,
 				118489842E2ED96B00851CC9 /* Frameworks */,
 				118489852E2ED96B00851CC9 /* Resources */,
+				11B46C492FBF72E100E1AFE4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				11B46C472FBF72E000E1AFE4 /* PBXTargetDependency */,
 			);
 			name = "Temperature converter";
 			productName = "Temperature converter";
 			productReference = 118489872E2ED96B00851CC9 /* Temperature converter.app */;
 			productType = "com.apple.product-type.application";
+		};
+		11B46C352FBF729D00E1AFE4 /* TemperatureWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11B46C4C2FBF72E100E1AFE4 /* Build configuration list for PBXNativeTarget "TemperatureWidgetExtension" */;
+			buildPhases = (
+				11B46C322FBF729D00E1AFE4 /* Sources */,
+				11B46C332FBF729D00E1AFE4 /* Frameworks */,
+				11B46C342FBF729D00E1AFE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TemperatureWidgetExtension;
+			productName = TemperatureWidgetExtension;
+			productReference = 11B46C362FBF729E00E1AFE4 /* TemperatureWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -152,6 +243,9 @@
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					118489862E2ED96B00851CC9 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					11B46C352FBF729D00E1AFE4 = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
@@ -171,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				118489862E2ED96B00851CC9 /* Temperature converter */,
+				11B46C352FBF729D00E1AFE4 /* TemperatureWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -183,6 +278,14 @@
 				118489922E2ED96D00851CC9 /* Preview Assets.xcassets in Resources */,
 				1184898F2E2ED96D00851CC9 /* Assets.xcassets in Resources */,
 				11314AEE2FB3ABCC00F44D85 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11B46C342FBF729D00E1AFE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B46C442FBF72E000E1AFE4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +310,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		11B46C322FBF729D00E1AFE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B46C402FBF72A000E1AFE4 /* TemperatureWidget.swift in Sources */,
+				11B46C3E2FBF72A000E1AFE4 /* TemperatureWidgetBundle.swift in Sources */,
+				11B46C422FBF72A000E1AFE4 /* AppIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11B46C472FBF72E000E1AFE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11B46C352FBF729D00E1AFE4 /* TemperatureWidgetExtension */;
+			targetProxy = 11B46C462FBF72E000E1AFE4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		118489932E2ED96D00851CC9 /* Debug */ = {
@@ -332,6 +453,7 @@
 		118489962E2ED96D00851CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -366,6 +488,7 @@
 		118489972E2ED96D00851CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -397,6 +520,60 @@
 			};
 			name = Release;
 		};
+		11B46C4A2FBF72E100E1AFE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N76MC3BF5R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TemperatureWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TemperatureWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Melenge.Temperature-converter.TemperatureWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11B46C4B2FBF72E100E1AFE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N76MC3BF5R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TemperatureWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TemperatureWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Daniel-Melenge.Temperature-converter.TemperatureWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -414,6 +591,15 @@
 			buildConfigurations = (
 				118489962E2ED96D00851CC9 /* Debug */,
 				118489972E2ED96D00851CC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11B46C4C2FBF72E100E1AFE4 /* Build configuration list for PBXNativeTarget "TemperatureWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11B46C4A2FBF72E100E1AFE4 /* Debug */,
+				11B46C4B2FBF72E100E1AFE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
