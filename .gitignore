@@ -1,0 +1,13 @@
+# Archivos del sistema operativo
+.DS_Store
+FilesToTrash
+
+# Archivos de configuración local de Xcode
+*.xcuserstate
+project.xcworkspace/xcuserdata/
+xcshareddata/xcschemes/
+xcuserdata/
+
+# Archivos de compilación
+build/
+DerivedData/
