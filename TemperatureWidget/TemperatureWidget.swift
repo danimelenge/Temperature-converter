@@ -33,7 +33,6 @@ struct Provider: AppIntentTimelineProvider {
 
     // Genera el horario de actualizaciones estáticas en segundo plano
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        // En un futuro paso aquí leeremos el contenedor compartido de SwiftData
         let entry = SimpleEntry(
             date: Date(),
             configuration: configuration,
@@ -89,14 +88,8 @@ struct TemperatureWidgetEntryView : View {
             }
         }
         .containerBackground(for: .widget) {
-            ZStack {
-                Color(uiColor: .systemBackground)
-                LinearGradient(
-                    colors: [.orange.opacity(0.12), .blue.opacity(0.06)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            }
+            // CAMBIO AQUÍ: Ahora usa el color adaptable de tus Assets (Claro / Oscuro)
+            Color("WidgetBackground")
         }
     }
 }
