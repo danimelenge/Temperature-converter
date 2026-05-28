@@ -98,7 +98,7 @@ struct TemperatureWidgetEntryView : View {
 
 // 4. CONFIGURACIÓN GENERAL DEL WIDGET (Soporta exclusivamente pantalla de inicio)
 struct TemperatureWidget: Widget {
-    let kind: String = "TemperatureWidget"
+    let kind: String =  "TemperatureWidget"
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
