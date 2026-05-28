@@ -1,4 +1,3 @@
-//
 //  TemperatureWidget.swift
 //  TemperatureWidget
 //
@@ -72,9 +71,12 @@ struct TemperatureWidgetEntryView : View {
                     .font(.subheadline.bold())
                     .foregroundStyle(.secondary)
                 
+                // TEXTO MODIFICADO CON ACCESIBILIDAD AUTOMÁTICA
                 Text("\(entry.resultAmount, specifier: "%.1f")°\(entry.resultUnit)")
                     .font(.system(size: family == .systemMedium ? 36 : 28, weight: .black, design: .rounded))
                     .foregroundStyle(LinearGradient(colors: [.orange, .red], startPoint: .top, endPoint: .bottom))
+                    .lineLimit(1) // 1. Evitamos que el texto ocupe más de una línea o muestre "..."
+                    .minimumScaleFactor(0.5) // 2. Permite encogerse de forma fluida hasta la mitad de su tamaño
             }
             
             Spacer()
