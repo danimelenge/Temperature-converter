@@ -114,7 +114,7 @@ struct ContentView: View {
                     }) {
                         Label("Guardar historial", systemImage: "plus.app.fill")
                             // MEJORA: Se añade 'relativeTo: .footnote' para que el tamaño 13 escale con Dynamic Type
-                        .font(.footnote.bold()) 
+                        .font(.footnote.bold())
                             .foregroundStyle(.white)
                             .foregroundStyle(.white)
                             .padding(.vertical, 8)
