@@ -28,7 +28,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
 
             // MARK: - Contenedor principal con pestañas
-            TabView(selection: $viewModel.selectedTab) {
+            TabView(selection: $viewModel.selectedTab) { 
                 // --- PESTAÑA 0: CONVERSOR ---
                 conversionView
                     .tabItem {
