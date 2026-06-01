@@ -94,7 +94,7 @@ La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, 
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Daniel**  
+Desarrollado por **Daniel** **M**
 SwiftUI Developer • iOS • Arquitectura limpia
 
  
