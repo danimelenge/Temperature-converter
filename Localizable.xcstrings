@@ -465,6 +465,23 @@
         }
       }
     },
+    "Registros Guardados" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved Records"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros Guardados"
+          }
+        }
+      }
+    },
     "Sin historial" : {
       "localizations" : {
         "en" : {
@@ -493,6 +510,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temperature Converter"
+          }
+        }
+      }
+    },
+    "Tendencia de Entradas" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Trend"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendencia de Entradas"
           }
         }
       }

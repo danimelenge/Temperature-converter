@@ -2,11 +2,12 @@
 //  HistoryListView.swift
 //  Temperature converter
 //
-//  Created by Daniel Melenge Rojas on 20/01/26.
+//  Created by Daniel Melenge Rojas.
 //
 
 import SwiftUI
 import SwiftData
+import Charts // Framework para los gráficos dinámicos
 
 struct HistoryListView: View {
     // MARK: - Entorno y Datos
@@ -20,7 +21,7 @@ struct HistoryListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // 1. Fondo Adaptativo
+                // 1. Fondo Adaptativo Personalizado
                 Group {
                     if colorScheme == .dark {
                         Color(red: 0.02, green: 0.03, blue: 0.08)
@@ -30,25 +31,77 @@ struct HistoryListView: View {
                 }
                 .ignoresSafeArea()
                 
+                // 2. Control de Estado de la Pantalla
                 if history.isEmpty {
                     ContentUnavailableView(
                         "Sin historial",
                         systemImage: "clock.arrow.circlepath",
                         description: Text("Las conversiones que guardes aparecerán aquí.")
                     )
-                    // ACCESIBILIDAD: Ya viene optimizado por Apple, pero nos aseguramos de que sea el foco principal.
                 } else {
                     List {
-                        ForEach(history) { item in
-                            historyRow(item)
-                                .listRowBackground(Color.primary.opacity(0.06))
+                        // MARK: - SECCIÓN 1: GRÁFICO DE TENDENCIA (Swift Charts)
+                        Section {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Tendencia de Entradas")
+                                    .font(.caption.bold())
+                                    .foregroundStyle(.secondary)
+                                
+                                Chart {
+                                    // Tomamos los últimos 10 registros y los revertimos para orden cronológico (Izquierda a Derecha)
+                                    ForEach(history.prefix(10).reversed()) { item in
+                                        // Línea principal del gráfico
+                                        LineMark(
+                                            x: .value("Fecha", item.timestamp),
+                                            y: .value("Temperatura", item.inputAmount)
+                                        )
+                                        .foregroundStyle(Color.orange.gradient)
+                                        .interpolationMethod(.catmullRom) // Curvatura estilizada premium
+                                        
+                                        // Puntos de intersección
+                                        PointMark(
+                                            x: .value("Fecha", item.timestamp),
+                                            y: .value("Temperatura", item.inputAmount)
+                                        )
+                                        .foregroundStyle(.orange)
+                                    }
+                                }
+                                .frame(height: 150)
+                                // Optimización de ejes para consistencia visual
+                                .chartXAxis {
+                                    AxisMarks(values: .stride(by: .day)) { _ in
+                                        AxisGridLine()
+                                        AxisValueLabel(format: .dateTime.day().month())
+                                            .font(.caption2)
+                                    }
+                                }
+                                .chartYAxis {
+                                    AxisMarks { value in
+                                        AxisGridLine()
+                                        if let temp = value.as(Double.self) {
+                                            AxisValueLabel("\(Int(temp))°")
+                                                .font(.caption2)
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 8)
                         }
-                        .onDelete(perform: deleteItems)
+                        .listRowBackground(Color.clear) // Permite que el gráfico flote sobre tu fondo adaptativo
+                        
+                        // MARK: - SECCIÓN 2: LISTA DEL HISTORIAL
+                        Section(header: Text("Registros Guardados")) {
+                            ForEach(history) { item in
+                                historyRow(item)
+                                    .listRowBackground(Color.primary.opacity(0.06))
+                            }
+                            .onDelete(perform: deleteItems)
+                        }
                     }
-                    .scrollContentBackground(.hidden)
+                    .scrollContentBackground(.hidden) // Oculta el fondo nativo para ver tus colores personalizados
                 }
                 
-                // --- NOTIFICACIÓN VISUAL (TOAST) ---
+                // MARK: - 3. NOTIFICACIÓN VISUAL (TOAST)
                 if showToast {
                     VStack {
                         Spacer()
@@ -73,7 +126,6 @@ struct HistoryListView: View {
                         .padding(.bottom, 40)
                     }
                     .zIndex(1)
-                    // ACCESIBILIDAD: Añadimos un área de anuncio para que VoiceOver lo lea al aparecer
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel("Notificación: Copiado al portapapeles")
                 }
@@ -89,14 +141,13 @@ struct HistoryListView: View {
         }
     }
     
-    // MARK: - Subvista para la fila
+    // MARK: - Subvista para la fila (historyRow)
     @ViewBuilder
     private func historyRow(_ item: ConversionHistory) -> some View {
         let shareText = "\(String(format: "%.1f", item.inputAmount))°\(item.inputUnit) equivalen a \(String(format: "%.1f", item.resultAmount))°\(item.resultUnit)"
         
-        // ACCESIBILIDAD: Convertimos la fila en un solo elemento para evitar navegación fragmentada
         HStack(spacing: 12) {
-            HStack { // Contenedor de la información de conversión
+            HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(item.inputAmount, specifier: "%.1f")°\(item.inputUnit)")
                         .font(.headline)
@@ -115,7 +166,7 @@ struct HistoryListView: View {
                 Image(systemName: "arrow.right.circle.fill")
                     .foregroundStyle(.orange)
                     .font(.title3)
-                    .accessibilityHidden(true) // Ocultamos el icono decorativo
+                    .accessibilityHidden(true)
                 
                 Spacer()
                 
@@ -123,10 +174,9 @@ struct HistoryListView: View {
                     .font(.body)
                     .bold()
             }
-            .accessibilityElement(children: .combine) // Agrupa textos e ignorar el icono
+            .accessibilityElement(children: .combine)
             .accessibilityLabel("\(item.inputAmount, specifier: "%.1f") grados \(item.inputUnit) equivalen a \(item.resultAmount, specifier: "%.1f") grados \(item.resultUnit). Guardado el \(item.timestamp.formatted(date: .long, time: .shortened))")
             
-            // El menú se mantiene como elemento separado para poder interactuar
             Menu {
                 Button {
                     UIPasteboard.general.string = shareText
@@ -143,7 +193,7 @@ struct HistoryListView: View {
                     .font(.title3)
                     .foregroundStyle(.orange)
                     .padding(.leading, 8)
-                    .contentShape(Rectangle()) // Aumenta el área de toque
+                    .contentShape(Rectangle())
             }
             .accessibilityLabel("Opciones de registro")
             .accessibilityHint("Permite copiar o compartir esta conversión.")
@@ -152,12 +202,11 @@ struct HistoryListView: View {
         .padding(.vertical, 4)
     }
     
-    // MARK: - Lógica de Notificación
+    // MARK: - Lógica de Control y Notificaciones
     private func triggerToast() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
         
-        // ACCESIBILIDAD: Notificamos a VoiceOver explícitamente que algo ocurrió
         UIAccessibility.post(notification: .announcement, argument: "Copiado al portapapeles")
         
         withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
@@ -181,10 +230,28 @@ struct HistoryListView: View {
     }
 }
 
-// MARK: - Previews
+// MARK: - Previews de Desarrollo Corregidos
 #Preview("Light Mode") {
     let container = try! ModelContainer(for: ConversionHistory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    container.mainContext.insert(ConversionHistory(inputAmount: 20, inputUnit: "C", resultAmount: 68, resultUnit: "F"))
+    
+    // Instanciamos y luego asignamos el desfase de tiempo manualmente
+    let registro1 = ConversionHistory(inputAmount: 12, inputUnit: "C", resultAmount: 53.6, resultUnit: "F")
+    registro1.timestamp = Date().addingTimeInterval(-86400 * 3) // Hace 3 días
+    
+    let registro2 = ConversionHistory(inputAmount: 28, inputUnit: "C", resultAmount: 82.4, resultUnit: "F")
+    registro2.timestamp = Date().addingTimeInterval(-86400 * 2) // Hace 2 días
+    
+    let registro3 = ConversionHistory(inputAmount: -5, inputUnit: "C", resultAmount: 23.0, resultUnit: "F")
+    registro3.timestamp = Date().addingTimeInterval(-86400 * 1) // Hace 1 día
+    
+    let registro4 = ConversionHistory(inputAmount: 20, inputUnit: "C", resultAmount: 68.0, resultUnit: "F")
+    // Este toma la fecha actual por defecto de tu modelo
+    
+    // Insertamos los registros preparados en el contexto
+    container.mainContext.insert(registro1)
+    container.mainContext.insert(registro2)
+    container.mainContext.insert(registro3)
+    container.mainContext.insert(registro4)
     
     return HistoryListView()
         .modelContainer(container)
@@ -193,7 +260,18 @@ struct HistoryListView: View {
 
 #Preview("Dark Mode") {
     let container = try! ModelContainer(for: ConversionHistory.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    container.mainContext.insert(ConversionHistory(inputAmount: -5, inputUnit: "C", resultAmount: 23, resultUnit: "F"))
+    
+    let registro1 = ConversionHistory(inputAmount: 35, inputUnit: "C", resultAmount: 95.0, resultUnit: "F")
+    registro1.timestamp = Date().addingTimeInterval(-86400 * 2)
+    
+    let registro2 = ConversionHistory(inputAmount: 15, inputUnit: "C", resultAmount: 59.0, resultUnit: "F")
+    registro2.timestamp = Date().addingTimeInterval(-86400 * 1)
+    
+    let registro3 = ConversionHistory(inputAmount: -2, inputUnit: "C", resultAmount: 28.4, resultUnit: "F")
+    
+    container.mainContext.insert(registro1)
+    container.mainContext.insert(registro2)
+    container.mainContext.insert(registro3)
     
     return HistoryListView()
         .modelContainer(container)
