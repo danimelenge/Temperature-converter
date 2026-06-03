@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-import Charts // Framework para los gráficos dinámicos
+import Charts 
 
 struct HistoryListView: View {
     // MARK: - Entorno y Datos
