@@ -94,7 +94,10 @@ La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, 
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Daniel** **Melenge**
+Desarrollado por **Daniel** **Melenge** 
+<img width="20" height="20" alt="r circle" src="https://github.com/user-attachments/assets/4a924b3b-0078-4e6a-87b5-6c93e67e0423" />
+
+****
 SwiftUI Developer • iOS • Arquitectura limpia
 
  
