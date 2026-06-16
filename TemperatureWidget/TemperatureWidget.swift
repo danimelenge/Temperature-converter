@@ -1,3 +1,4 @@
+//
 //  TemperatureWidget.swift
 //  TemperatureWidget
 //
@@ -58,6 +59,8 @@ struct TemperatureWidgetEntryView : View {
                 Image(systemName: entry.icon)
                     .font(.title3)
                     .foregroundStyle(.orange)
+                
+                // Xcode extraerá "Conversor" automáticamente
                 Text("Conversor")
                     .font(.caption.bold())
                     .foregroundStyle(.secondary)
@@ -81,29 +84,31 @@ struct TemperatureWidgetEntryView : View {
             
             Spacer()
             
-            // Pie de página con estampa de tiempo
+            // Pie de página con estampa de tiempo localizada
             HStack {
                 Spacer()
+                // Xcode extraerá esto como "Actualizado: %@" de forma automática
                 Text("Actualizado: \(entry.date, style: .time)")
                     .font(.system(size: 8, weight: .medium))
                     .foregroundStyle(.tertiary)
             }
         }
         .containerBackground(for: .widget) {
-            // CAMBIO AQUÍ: Ahora usa el color adaptable de tus Assets (Claro / Oscuro)
+            // Usa el color adaptable de tus Assets (Claro / Oscuro)
             Color("WidgetBackground")
         }
     }
 }
 
-// 4. CONFIGURACIÓN GENERAL DEL WIDGET (Soporta exclusivamente pantalla de inicio)
+// 4. CONFIGURACIÓN GENERAL DEL WIDGET
 struct TemperatureWidget: Widget {
-    let kind: String =  "TemperatureWidget"
+    let kind: String = "TemperatureWidget"
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             TemperatureWidgetEntryView(entry: entry)
         }
+        // Textos de la galería de widgets localizados automáticamente
         .configurationDisplayName("Última conversión")
         .description("Revisa de un vistazo el último cálculo guardado en tu historial.")
         .supportedFamilies([.systemSmall, .systemMedium]) // Bloqueado para evitar pantallas dinámicas grandes

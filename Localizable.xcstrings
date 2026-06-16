@@ -111,6 +111,29 @@
         }
       }
     },
+    "Actualizado: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated: %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atualizado: %@"
+          }
+        }
+      }
+    },
     "Ajusta la temperatura" : {
       "localizations" : {
         "en" : {
@@ -349,6 +372,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conversão de Voz"
+          }
+        }
+      }
+    },
+    "Conversor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converter"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversor"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversor"
           }
         }
       }
@@ -662,6 +708,29 @@
         }
       }
     },
+    "Revisa de un vistazo el último cálculo guardado en tu historial." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the last saved calculation in your history at a glance."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revisa de un vistazo el último cálculo guardado en tu historial."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veja a última conversão salva no seu histórico em um relance."
+          }
+        }
+      }
+    },
     "Sin historial" : {
       "localizations" : {
         "en" : {
@@ -725,6 +794,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tendência de Entradas"
+          }
+        }
+      }
+    },
+    "Última conversión" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Conversion"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última conversión"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última Conversão"
           }
         }
       }

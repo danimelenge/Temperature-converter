@@ -26,6 +26,7 @@
 		11B46C422FBF72A000E1AFE4 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B46C412FBF72A000E1AFE4 /* AppIntent.swift */; };
 		11B46C442FBF72E000E1AFE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B46C432FBF72E000E1AFE4 /* Assets.xcassets */; };
 		11B46C482FBF72E000E1AFE4 /* TemperatureWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 11B46C362FBF729E00E1AFE4 /* TemperatureWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		11DD4D1F2FE1B51100C377DE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 11314AED2FB3ABCB00F44D85 /* Localizable.xcstrings */; };
 		11DE87B32F33CA9F00B4894A /* ConvertTemperatureIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE87B22F33CA9F00B4894A /* ConvertTemperatureIntent.swift */; };
 		11DE87B52F33CB9600B4894A /* AppShortcutsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE87B42F33CB9600B4894A /* AppShortcutsProvider.swift */; };
 /* End PBXBuildFile section */
@@ -286,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11DD4D1F2FE1B51100C377DE /* Localizable.xcstrings in Resources */,
 				11B46C442FBF72E000E1AFE4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
