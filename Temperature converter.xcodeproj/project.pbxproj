@@ -260,6 +260,7 @@
 				Base,
 				"es-419",
 				"pt-BR",
+				"fr-CA",
 			);
 			mainGroup = 1184897E2E2ED96B00851CC9;
 			productRefGroup = 118489882E2ED96B00851CC9 /* Products */;

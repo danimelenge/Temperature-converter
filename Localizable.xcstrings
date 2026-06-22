@@ -15,6 +15,12 @@
             "value" : "%1$.1f° %2$@ = %3$.1f° %4$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$.1f° %2$@ = %3$.1f° %4$@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37,6 +43,12 @@
             "value" : "%1$.1f° %2$@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$.1f°%2$@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54,6 +66,12 @@
           }
         },
         "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "."
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "."
@@ -81,6 +99,12 @@
             "value" : "°C"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "°C"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,6 +122,12 @@
           }
         },
         "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "°F"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "°F"
@@ -126,6 +156,12 @@
             "value" : "Actualizado: %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis à jour : %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146,6 +182,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajusta la temperatura"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuster la température"
           }
         },
         "pt-BR" : {
@@ -170,6 +212,12 @@
             "value" : "Ajustes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,6 +235,12 @@
           }
         },
         "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celsius"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Celsius"
@@ -214,6 +268,12 @@
             "value" : "Celsius → Fahrenheit"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celsius → Fahrenheit"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -234,6 +294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Celsius o Fahrenheit"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celsius ou Fahrenheit"
           }
         },
         "pt-BR" : {
@@ -258,6 +324,12 @@
             "value" : "Compartir"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -278,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuración de Unidad"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration de l'unité"
           }
         },
         "pt-BR" : {
@@ -302,6 +380,12 @@
             "value" : "Continuar"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -322,6 +406,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conversión"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversion"
           }
         },
         "pt-BR" : {
@@ -346,6 +436,12 @@
             "value" : "Conversión de Temperatura"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversion de température"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -366,6 +462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Conversion de Voz "
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversion vocale"
           }
         },
         "pt-BR" : {
@@ -391,6 +493,12 @@
             "value" : "Conversor"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convertisseur"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -408,6 +516,12 @@
           }
         },
         "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convertir"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Convertir"
@@ -435,6 +549,12 @@
             "value" : "Convertir Temperatura"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convertir la température"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -455,6 +575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copiado al portapapeles"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copié dans le presse-papiers"
           }
         },
         "pt-BR" : {
@@ -479,6 +605,12 @@
             "value" : "Copiar resultado"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier le résultat"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -501,6 +633,12 @@
             "value" : "El resultado es %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le résultat est %@"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -518,6 +656,12 @@
           }
         },
         "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fahrenheit"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fahrenheit"
@@ -545,6 +689,12 @@
             "value" : "Fahrenheit → Celsius"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fahrenheit → Celsius"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -565,6 +715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grados"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrés"
           }
         },
         "pt-BR" : {
@@ -589,6 +745,12 @@
             "value" : "Guardar historial"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer l'historique"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -609,6 +771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Historial"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique"
           }
         },
         "pt-BR" : {
@@ -633,6 +801,12 @@
             "value" : "La cantidad numérica a convertir"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La quantité numérique à convertir"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -655,6 +829,12 @@
             "value" : "Las conversiones que guardes aparecerán aquí."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les conversions que vous enregistrez apparaîtront ici."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -675,6 +855,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Novedades en"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés dans"
           }
         },
         "pt-BR" : {
@@ -700,6 +886,12 @@
             "value" : "Registros Guardados"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrements sauvegardés"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -721,6 +913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Revisa de un vistazo el último cálculo guardado en tu historial."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultez d'un coup d'œil le dernier calcul enregistré dans votre historique."
           }
         },
         "pt-BR" : {
@@ -745,6 +943,12 @@
             "value" : "Sin historial"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun historique"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -765,6 +969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temperature Converter"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convertisseur de température"
           }
         },
         "pt-BR" : {
@@ -790,6 +1000,12 @@
             "value" : "Tendencia de Entradas"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendance des entrées"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -813,6 +1029,12 @@
             "value" : "Última conversión"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière conversion"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -833,6 +1055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unidad"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unité"
           }
         },
         "pt-BR" : {
