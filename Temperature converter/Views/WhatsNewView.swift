@@ -27,11 +27,6 @@ struct WhatsNewView: View {
                         
                         // MARK: 1. Header Section
                         VStack(spacing: 8) {
-                            Text("Novedades en")
-                                .font(.title2)
-                                .fontWeight(.medium)
-                                .foregroundColor(.secondary)
-                            
                             Text("Temperature Converter")
                                 .font(.system(size: 36, weight: .black, design: .rounded))
                                 .multilineTextAlignment(.center)
@@ -46,10 +41,10 @@ struct WhatsNewView: View {
                         .padding(.top, 60)
                         .scaleEffect(animateTitle ? 1 : 0.8)
                         .opacity(animateTitle ? 1 : 0)
-                        // ACCESIBILIDAD: Combinamos ambos textos en un solo encabezado
+                        // ACCESIBILIDAD: Configurado como encabezado para VoiceOver
                         .accessibilityElement(children: .combine)
                         .accessibilityAddTraits(.isHeader)
-                        .accessibilityLabel("Novedades en Temperature Converter")
+                        .accessibilityLabel("Temperature Converter")
                         
                         // MARK: 2. Features List
                         VStack(alignment: .leading, spacing: 32) {
