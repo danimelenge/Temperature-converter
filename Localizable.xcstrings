@@ -1,6 +1,84 @@
 {
   "sourceLanguage" : "es-419",
   "strings" : {
+    "" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Empty string)"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Chaîne vide)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(String vazia)"
+          }
+        }
+      }
+    },
+    "%.0f°%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f°%@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.0f°%2$@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f°%@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f°%@"
+          }
+        }
+      }
+    },
+    "%.1f grados %@ equivalen a %.1f grados %@. Guardado el %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.1f degrees %@ are equivalent to %.1f degrees %@. Saved on %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.1f grados %2$@ equivalen a %3$.1f grados %4$@. Guardado el %5$@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.1f degrés %@ équivalent à %.1f degrés %@. Enregistré le %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.1f graus %@ equivalem a %.1f graus %@. Salvo em %@"
+          }
+        }
+      }
+    },
     "%.1f° %@ = %.1f° %@" : {
       "localizations" : {
         "en" : {
@@ -53,6 +131,90 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$.1f°%2$@"
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@"
+          }
+        }
+      }
+    },
+    "%lld grados" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld degrees"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld grados"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld degrés"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld graus"
+          }
+        }
+      }
+    },
+    "%lld°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld°"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld°"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld°"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld°"
           }
         }
       }
@@ -141,6 +303,146 @@
         }
       }
     },
+    "☀️ Muy caliente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Very hot"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Muy caliente"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Très chaud"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Muito quente"
+          }
+        }
+      }
+    },
+    "❄️ Muy frío" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "❄️ Very cold"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "❄️ Muy frío"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "❄️ Très froid"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "❄️ Muito frio"
+          }
+        }
+      }
+    },
+    "🌤️ Templado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌤️ Mild"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌤️ Templado"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌤️ Tempéré"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌤️ Ameno"
+          }
+        }
+      }
+    },
+    "🔥 Caliente" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 Hot"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 Caliente"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 Chaud"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🔥 Quente"
+          }
+        }
+      }
+    },
+    "🧊 Frío" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🧊 Cold"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🧊 Frío"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🧊 Froid"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🧊 Frio"
+          }
+        }
+      }
+    },
     "Actualizado: %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -166,6 +468,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Atualizado: %@"
+          }
+        }
+      }
+    },
+    "Actualmente seleccionado" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currently selected"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualmente seleccionado"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actuellement sélectionné"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atualmente selecionado"
           }
         }
       }
@@ -198,6 +528,34 @@
         }
       }
     },
+    "Ajuste de temperatura" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature adjustment"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuste de temperatura"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglage de la température"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajuste de temperatura"
+          }
+        }
+      }
+    },
     "Ajustes" : {
       "localizations" : {
         "en" : {
@@ -222,6 +580,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajustes"
+          }
+        }
+      }
+    },
+    "Cambia el orden de las unidades para el conversor principal." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes the order of the units for the main converter."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambia el orden de las unidades para el conversor principal."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifie l'ordre des unités pour le convertisseur principal."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altera a ordem das unidades para o conversor principal."
           }
         }
       }
@@ -310,6 +696,34 @@
         }
       }
     },
+    "Cierra esta pantalla y abre el conversor principal." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Closes this screen and opens the main converter."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cierra esta pantalla y abre el conversor principal."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferme cet écran et ouvre le convertisseur principal."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha esta tela e abre o conversor principal."
+          }
+        }
+      }
+    },
     "Compartir" : {
       "localizations" : {
         "en" : {
@@ -366,6 +780,34 @@
         }
       }
     },
+    "Configuration" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuração"
+          }
+        }
+      }
+    },
     "Continuar" : {
       "localizations" : {
         "en" : {
@@ -390,6 +832,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuar"
+          }
+        }
+      }
+    },
+    "Continuar a la aplicación" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue to the application"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar a la aplicación"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer vers l'application"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar para o aplicativo"
           }
         }
       }
@@ -619,6 +1089,90 @@
         }
       }
     },
+    "Desliza hacia arriba o hacia abajo para cambiar el valor." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe up or down to change the value."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desliza hacia arriba o hacia abajo para cambiar el valor."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glissez vers le haut ou vers le bas pour modifier la valeur."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deslize para cima ou para baixo para alterar o valor."
+          }
+        }
+      }
+    },
+    "Dirección de la conversión" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversion direction"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dirección de la conversión"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sens de la conversion"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direção da conversão"
+          }
+        }
+      }
+    },
+    "Editar lista de historial" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit history list"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar lista de historial"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier la liste de l'historique"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar lista do histórico"
+          }
+        }
+      }
+    },
     "El resultado es %@" : {
       "localizations" : {
         "en" : {
@@ -643,6 +1197,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O resultado é %@"
+          }
+        }
+      }
+    },
+    "Estado actual: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current status: %@"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado actual: %@"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "État actuel : %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status atual: %@"
           }
         }
       }
@@ -703,6 +1285,62 @@
         }
       }
     },
+    "Favorite Emoji" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Emoji"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Emoji"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Émoji préféré"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emoji favorito"
+          }
+        }
+      }
+    },
+    "Fecha" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        }
+      }
+    },
     "Grados" : {
       "localizations" : {
         "en" : {
@@ -727,6 +1365,118 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Graus"
+          }
+        }
+      }
+    },
+    "Grados Celsius" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees Celsius"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grados Celsius"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrés Celsius"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graus Celsius"
+          }
+        }
+      }
+    },
+    "Grados Fahrenheit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees Fahrenheit"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grados Fahrenheit"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrés Fahrenheit"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graus Fahrenheit"
+          }
+        }
+      }
+    },
+    "Guarda esta conversión actual en tu lista de registros." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saves this current conversion to your history list."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guarda esta conversión actual en tu lista de registros."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistre cette conversion actuelle dans votre historique."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salva esta conversão atual na sua lista de registros."
+          }
+        }
+      }
+    },
+    "Guardar en el historial" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save to history"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar en el historial"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer l'historique"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar no histórico"
           }
         }
       }
@@ -787,6 +1537,34 @@
         }
       }
     },
+    "Indicador visual de clima" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visual weather indicator"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicador visual de clima"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicateur météo visuel"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicador visual de clima"
+          }
+        }
+      }
+    },
     "La cantidad numérica a convertir" : {
       "localizations" : {
         "en" : {
@@ -811,6 +1589,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A quantidade numérica a converter"
+          }
+        }
+      }
+    },
+    "La temperatura es de %.1f grados, que equivalen a %.1f grados" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The temperature is %.1f degrees, which is equivalent to %.1f degrees"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "La temperatura es de %1$.1f grados, que equivalen a %2$.1f grados"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La température est de %.1f degrés, ce qui équivaut à %.1f degrés"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A temperatura é de %.1f graus, o que equivale a %.1f graus"
           }
         }
       }
@@ -843,30 +1649,86 @@
         }
       }
     },
-    "Novedades en" : {
+    "Notificación: Copiado al portapapeles" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What's New in"
+            "value" : "Notification: Copied to clipboard"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novedades en"
+            "value" : "Notificación: Copiado al portapapeles"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nouveautés dans"
+            "value" : "Notification : Copié dans le presse-papiers"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novidades em"
+            "value" : "Notificação: Copiado para a área de transferência"
+          }
+        }
+      }
+    },
+    "Opciones de registro" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record options"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opciones de registro"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options d'enregistrement"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opções de registro"
+          }
+        }
+      }
+    },
+    "Permite copiar o compartir esta conversión." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allows you to copy or share this conversion."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite copiar o compartir esta conversión."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permet de copier ou de partager cette conversion."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite copiar ou compartilhar esta conversão."
           }
         }
       }
@@ -929,6 +1791,34 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglages"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajustes"
+          }
+        }
+      }
+    },
     "Sin historial" : {
       "localizations" : {
         "en" : {
@@ -953,6 +1843,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sem histórico"
+          }
+        }
+      }
+    },
+    "Temperatura" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatura"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Température"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatura"
           }
         }
       }
@@ -1010,6 +1928,34 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tendência de Entradas"
+          }
+        }
+      }
+    },
+    "This is an example widget." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is an example widget."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is an example widget."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceci est un exemple de widget."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este é um exemplo de widget."
           }
         }
       }

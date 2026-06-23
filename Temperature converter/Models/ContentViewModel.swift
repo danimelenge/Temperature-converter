@@ -24,11 +24,16 @@ class ContentViewModel {
     var temperatureDescription: String {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
-        case ..<0: return "❄️ Muy frío"
-        case 0..<10: return "🧊 Frío"
-        case 10..<25: return "🌤️ Templado"
-        case 25..<35: return "🔥 Caliente"
-        default: return "☀️ Muy caliente"
+        case ..<0:
+            return String(localized: "❄️ Muy frío")
+        case 0..<10:
+            return String(localized: "🧊 Frío")
+        case 10..<25:
+            return String(localized: "🌤️ Templado")
+        case 25..<35:
+            return String(localized: "🔥 Caliente")
+        default:
+            return String(localized: "☀️ Muy caliente")
         }
     }
     
