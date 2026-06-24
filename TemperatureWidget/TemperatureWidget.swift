@@ -47,7 +47,7 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
-// 3. EL DISEÑO VISUAL ADAPTADO A LA INTERFAZ DE TU APP
+// 3. EL DISEÑO VISUAL ADAPTADO A LA INTERFAZ DE LA APP
 struct TemperatureWidgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family

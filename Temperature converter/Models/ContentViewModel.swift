@@ -12,6 +12,7 @@ import SwiftData
 class ContentViewModel {
     // MARK: - Estado de la Interfaz
     var inputValue: Double = 0
+    // TODO: Refactorizar 'unitSelection' de Int a un Enum (ej. TemperatureUnit) para evitar índices hardcodeados (0 y 1).
     var unitSelection: Int = 0
     var selectedTab: Int = 0
     var saveTrigger: Bool = false
@@ -21,6 +22,8 @@ class ContentViewModel {
         unitSelection == 0 ? inputValue * 9 / 5 + 32 : (inputValue - 32) * 5 / 9
     }
     
+    // MARK: - Localización e Internacionalización
+    /// Retorna la descripción del clima completamente localizada y lista para el String Catalog (Soporta: es-419, en, fr-CA, pt-BR).
     var temperatureDescription: String {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         switch celsius {
@@ -37,7 +40,7 @@ class ContentViewModel {
         }
     }
     
-    // MARK: - Estética Dinámica
+    // MARK: - Estética Dinámica e Interfaz de Usuario
     func backgroundGradient(isDark: Bool) -> [Color] {
         let celsius = unitSelection == 0 ? inputValue : convertedValue
         let opacity1 = isDark ? 0.4 : 0.6
@@ -74,8 +77,8 @@ class ContentViewModel {
         iconName == "flame.fill" ? 1.1 : (iconName == "snowflake" ? 0.9 : 1.0)
     }
 
-    // MARK: - Acciones (SwiftData se maneja desde la View habitualmente,
-    // pero la lógica de preparación va aquí)
+    // MARK: - Persistencia (SwiftData)
+    // TODO: Evaluar la sincronización automática de este método con los App Intents de Siri en futuras actualizaciones.
     func saveConversion(modelContext: ModelContext, history: [ConversionHistory]) {
         let newRecord = ConversionHistory(
             inputAmount: inputValue,
@@ -87,7 +90,8 @@ class ContentViewModel {
         modelContext.insert(newRecord)
         saveTrigger.toggle()
         
-        // Lógica de limpieza
+        // MARK: Lógica de Limpieza del Historial
+        // FIXME: El uso directo de 'history.suffix(from: 10)' podría eliminar registros incorrectos o causar desfases si la colección 'history' inyectada desde la View no viene explícitamente ordenada por fecha.
         if history.count > 10 {
             history.suffix(from: 10).forEach { modelContext.delete($0) }
         }
