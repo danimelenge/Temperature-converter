@@ -26,7 +26,8 @@ La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, 
 ![Demo de la app](./path-to-your-gif.gif)
 
 > 🆕 Grabación de la versión más reciente  
-> ![Grabación de pantalla](https://github.com/user-attachments/assets/03e640e5-c7f5-4843-82ce-0f3415448dc6)
+> <img width="510" height="916" alt="Grabación de pantalla 2026-06-24 a la(s) 2 33 19 p m" src="https://github.com/user-attachments/assets/2e1ae100-f64c-47c3-9670-ff6dca5c4c55" />
+
 
 > <img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
 
