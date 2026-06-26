@@ -35,9 +35,6 @@ La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, 
 
 
 
-> <img width="168" height="316" alt="Captura de pantalla 2026-06-24 a la(s) 2 48 00 p m" src="https://github.com/user-attachments/assets/fd0506d5-d47e-44dd-833f-a123486d81f2" />
-
-
 ---
 
 ## ✨ Funcionalidades destacadas
