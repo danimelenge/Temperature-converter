@@ -31,7 +31,7 @@ La app está pensada como un proyecto **escalable**, con arquitectura **MVVM**, 
 
 > <img width="1179" height="2556" alt="Simulator Screenshot - iPhone 15 Pro" src="https://github.com/user-attachments/assets/690fffd7-bc8f-4738-8a8a-88eb477190c7" />
 
-> <img width="247" height="476" alt="Captura de pantalla 2026-06-22 a la(s) 4 43 15 p m" src="https://github.com/user-attachments/assets/21c6fd69-6680-4afc-be53-fa9325887b41" />
+> <img width="247" height="476" alt="Captura de pantalla 2026-06-22 a la(s) 4 43 15 p m" src="https://github.com/user-attachments/assets/21c6fd69-6680-4afc-be53-fa9325887b41" /> 
 
 
 
