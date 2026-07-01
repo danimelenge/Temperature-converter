@@ -10,7 +10,7 @@
 ![iOS](https://img.shields.io/badge/iOS-17%2B-lightgrey?logo=apple&logoColor=black)
 ![Platform](https://img.shields.io/badge/Platform-iPhone%20%7C%20iPad-black?logo=apple)
 ![Design](https://img.shields.io/badge/Design-Figma%20%7C%20Adobe%20XD-ff61f6?logo=figma&logoColor=white)
-
+ 
 ---
 
 ## 📱 Descripción
